@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>我們的角色｜學習陪伴角色</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.two.case{grid-template-columns:5fr 7fr}@media (max-width:900px){.two.case{grid-template-columns:1fr}}
+.chain{display:grid;grid-template-columns:1fr 32px 1fr 32px 1fr;gap:var(--s-4);align-items:stretch}
+.chain .arr{display:flex;align-items:center;justify-content:center;color:#bbb;font-size:24px}
+@media (max-width:900px){.chain{grid-template-columns:1fr}.chain .arr{transform:rotate(90deg);height:32px}}
+.chain .card ul{margin:8px 0 0;padding-left:18px}.chain .card li{margin:4px 0}
+.quad{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.quad .q{background:#fff;border-radius:var(--r-md);padding:16px;display:flex;gap:14px;align-items:flex-start;cursor:pointer;border:2px solid transparent}
+.quad .q.on{border-color:var(--ink)}
+.quad .q b{display:block;font-weight:600}
+.quad .q .who{font-size:13px;color:var(--muted)}
+.quad .q .say{font-size:14px;margin-top:4px}
+.axislbl{font-size:13px;color:var(--muted);text-align:center;margin:6px 0}
+.facelegend{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
+.facelegend div{display:flex;gap:10px;align-items:center;font-size:14px}
+</style>
+</head>
+<body>
+<main>
+
+<section class="hero"><div class="wrap">
+  <div class="hero-grid">
+    <div>
+      <span class="fact"><b>2</b> 個問題，<b>4</b> 種朋友，<b>7</b> 種情境各有四種反應</span>
+      <h1>四個性格不同的朋友，同一件事四種反應</h1>
+      <p class="lead">一個朋友怎麼對你，只有兩個問題：它帶頭還是跟著你、它對你熱還是冷。四種答案就是孩子班上一定有的四種同學，也就是四個角色。卡住、怕考、無聊這些狀態是情境，每個角色都接，差別在怎麼接。</p>
+      <div class="btn-row"><a class="btn" href="#推論">推論怎麼來</a><a class="btn sec" href="#矩陣">反應矩陣</a></div>
+    </div>
+    <div class="card" id="herocast"></div>
+  </div>
+</div></section>
+
+<section id="推論"><div class="wrap">
+  <div class="kicker">推論</div>
+  <h2>從孩子需要什麼，到四個角色</h2>
+  <div class="chain">
+    <div class="card"><div class="k">第一頁的結論</div><h3>孩子需要四件事</h3><ul><li>做得到</li><li>有趣</li><li>不被比較</li><li>有人聽</li></ul><p style="margin-top:12px">加上兩種一定會出現的狀態：怕、無聊。</p></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="k">第二頁的結論</div><h3>角色要守四條規則</h3><ul><li>少，每個都說得出為什麼</li><li>同一件事，反應不同</li><li>兩兩相反</li><li>要有缺點</li></ul></div>
+    <div class="arr">→</div>
+    <div class="card"><div class="k">所以</div><h3>照「它怎麼對你」切</h3><p>需求是角色要做的事，不是角色本身。性格要能讓四個角色對同一件事反應不同，而且兩兩相反。朋友對你的方式只有兩個問題，答案剛好兩兩相反，四個，每個負責幾條需求。</p></div>
+  </div>
+</div></section>
+
+<section class="alt" id="四種"><div class="wrap">
+  <div class="kicker">兩個問題</div>
+  <h2>它帶頭還是跟著你，它熱還是冷</h2>
+  <p class="sub">這兩個問題不是我想的。心理學描述「一個人怎麼對別人」最老的一張圖就是這兩軸：主導還是順從、親和還是冷淡（Leary 1957；Wiggins 1979 用它整理所有描述人際關係的形容詞）。研究裡測過的陪伴角色也都落在這四格：Baylor 的導師是帶頭又熱、專家是帶頭又冷、激勵者是跟著你又熱；陳德懷的「一個做一個看」是跟著你又冷。</p>
+  <div class="two case">
+    <div>
+      <div class="axislbl">帶頭</div>
+      <div class="quad" id="quad"></div>
+      <div class="axislbl">跟著你</div>
+      <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--muted);padding:0 8px"><span>← 冷</span><span>熱 →</span></div>
+    </div>
+    <div>
+      <div class="tscroll"><table class="t" id="why"></table></div>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="kicker">臉</div>
+  <h2>兩個問題畫在臉上</h2>
+  <p class="sub">帶頭的有眉毛，跟著你的沒有。熱的嘴在笑，冷的嘴是一條線。孩子看臉就分得出四種。名字和顏色是示例。</p>
+  <div class="card"><div class="facelegend" id="facelegend"></div></div>
+</div></section>
+
+<section class="alt" id="矩陣"><div class="wrap">
+  <div class="kicker">反應矩陣</div>
+  <h2>七種情境，每個角色怎麼接</h2>
+  <div class="tscroll"><table class="t mx" id="mx"></table></div>
+  <div class="card" id="detail" style="margin-top:16px"></div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="kicker">年段與機制</div>
+  <h2>年段怎麼調整</h2>
+  <div class="grid g3">
+    <div class="card"><h3>低年級</h3><p>四個都可以。這個年段角色的功能是好玩、我的、我決定，不是輔導。</p></div>
+    <div class="card"><h3>高年級到國中</h3><p>暖暖最重要：焦慮、不被比較。刺刺和衝衝的台詞變軟，台灣國中生已經被推夠多。不另外加角色。</p></div>
+    <div class="card"><h3>機制</h3><p>孩子選今天誰陪、可以叫它走、它不會餓也不會死。上課時躲起來，有事才出現。不計分、不餵食。</p></div>
+  </div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+  <div class="kicker">不採用的版本</div>
+  <h2>三個不採用的版本，和為什麼</h2>
+  <div class="grid g3">
+    <div class="card"><div class="k">11-04　照學習狀態切，七個</div><div style="display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px" id="v1"></div><p>困惑、害怕、無聊、難過、開心各一個角色。問題：角色變成「孩子的情緒」，不是陪他的人；而且狀態是情境，不該是角色。</p></div>
+    <div class="card"><div class="k">11-05　性格切，六個</div><div style="display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px" id="v2"></div><p>四個從兩軸來，另外兩個（怕、好奇）是我加的，軸上推不出來，也跟「狀態是情境」矛盾。拿掉。</p></div>
+    <div class="card"><div class="k">Rong 原型，八個</div><div style="display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px" id="rong"></div><p>溫暖、好奇、傾聽、擁抱、從容、成長、行動、創意。三個重疊在歸屬、兩個在有趣；沒有一個接卡住、害怕。全是正向，差異只靠口頭禪。</p></div>
+  </div>
+</div></section>
+
+<section class="band" id="拍板"><div class="wrap">
+  <div class="kicker">決定</div>
+  <h2>要決定的事</h2>
+  <ol class="decide">
+    <li><div><b>照「它怎麼對你」切，可以嗎</b>　兩個問題、四種同學。<div class="my">我的判斷：可以。孩子認得這四種同學，研究裡測過的角色也都落在這四格。</div></div></li>
+    <li><div><b>四個夠不夠，要不要第五個</b>　第五個要說得出它從哪裡來。<div class="my">我的判斷：先四個拿去問孩子，認得出再談加。</div></div></li>
+    <li><div><b>刺刺（毒舌）留不留</b>　研究說孩子要有脾氣的朋友，但國中段要收斂。<div class="my">我的判斷：留，國中台詞變軟。</div></div></li>
+    <li><div><b>名字和口頭禪</b>　現在都是示例，沒測過孩子。<div class="my">我的判斷：先定一版，入校時用五分鐘教案流程讓全班投票。</div></div></li>
+  </ol>
+</div></section>
+
+</main>
+<footer class="closing"><div class="wrap">
+  <div>美感與數位教科書研究計畫　V1 陪伴角色研究　2026-11　整理：馨儀</div>
+  <details><summary>依據</summary><ul>
+    <li>兩軸：Leary (1957) Interpersonal Diagnosis of Personality；Wiggins (1979) A psychological taxonomy of trait-descriptive terms: The interpersonal domain. Journal of Personality and Social Psychology 37(3), 395–412.</li>
+    <li>四格裡的研究角色：Baylor &amp; Kim (2005) 專家／激勵者／導師；Chan &amp; Baskin (1988) 競爭者、旁觀者、分工者。</li>
+    <li>缺點的依據：Taylor &amp; Mottweiler (2008) 孩子造的想像朋友常常不聽話、愛指揮；角落小夥伴的角色設定。</li>
+    <li>形狀輪廓取自師生同步網站的鵝卵石路徑；名字、台詞、顏色都是示例。</li>
+  </ul></details>
+</div></footer>
+<script src="app.js"></script>
+<script>
+document.getElementById('herocast').innerHTML='<div class="k">四個角色</div><div style="display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end">'+ROLES.map(r=>`<div style="text-align:center">${blob(r.sh,r.id,{box:72,color:r.col})}<div style="font-size:13px;margin-top:4px">${r.n}</div><div style="font-size:12px;color:#6f6c66">${r.pos}</div></div>`).join('')+'</div>';
+let sel='rush',cell=null;
+const ORDER=['sharp','rush','cool','warm']; // 左上 帶頭冷、右上 帶頭熱、左下 跟著冷、右下 跟著熱
+function quad(){document.getElementById('quad').innerHTML=ORDER.map(id=>{const c=ROLES.find(r=>r.id===id);return `<div class="q${sel===id?' on':''}" onclick="pick('${id}')">${blob(c.sh,c.id,{box:56,color:c.col})}<div><b>${c.n}　<span style="font-weight:400;font-size:13px;color:#6f6c66">${c.pos}</span></b><div class="who">${c.like}</div><div class="say">「${c.one}」</div></div></div>`}).join('')}
+function why(){document.getElementById('why').innerHTML='<thead><tr><th>角色</th><th>它負責的需求</th><th>研究裡的對應</th><th>缺點</th></tr></thead><tbody>'+ROLES.map(c=>`<tr class="${sel===c.id?'hl':''}" style="cursor:pointer" onclick="pick('${c.id}')"><td><b>${c.n}</b><br><span class="muted" style="font-size:12px">${c.pos}</span></td><td>${c.need}</td><td style="font-size:13px">${c.ref}</td><td style="font-size:13px;color:#9a3b2e">${c.bad}</td></tr>`).join('')+'</tbody>'}
+function legend(){document.getElementById('facelegend').innerHTML=ROLES.map(c=>`<div>${blob(c.sh,c.id,{box:56,color:c.col})}<span><b>${c.n}</b><br><span class="muted" style="font-size:13px">${c.face}</span></span></div>`).join('')}
+function table(){
+  let h='<thead><tr><th class="first">情境</th>'+ROLES.map(c=>`<th>${blob(c.sh,c.id,{box:36,color:c.col})}${c.n}</th>`).join('')+'</tr></thead><tbody>';
+  SITUATIONS.forEach((s,i)=>{h+=`<tr><td class="first"><b>${s.n}</b><br><span class="muted" style="font-size:12px">${s.s}</span></td>`+ROLES.map((c,j)=>`<td class="${sel===c.id?'hl':''}" style="cursor:pointer" onclick="pickCell(${i},${j})">${s.r[j]}</td>`).join('')+'</tr>'});
+  document.getElementById('mx').innerHTML=h+'</tbody>';
+}
+function pick(id){sel=id;cell=null;quad();why();table();detail();}
+function pickCell(i,j){sel=ROLES[j].id;cell=[i,j];quad();why();table();detail();}
+function detail(){const d=document.getElementById('detail');const c=ROLES.find(x=>x.id===sel);
+  let h=`<div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">${blob(c.sh,c.id,{box:72,color:c.col})}<div style="flex:1;min-width:240px"><h3 style="margin:0">${c.n}　<span class="muted" style="font-weight:400;font-size:14px">${c.pos}，${c.like}</span></h3><p>做法：${c.how}</p><p>缺點：${c.bad}</p><p>負責：${c.need}</p>`;
+  if(cell){const s=SITUATIONS[cell[0]];h+=`<p style="margin-top:8px;padding:8px 12px;background:#f5f5f3;border-radius:8px">${s.n}：「${s.r[cell[1]]}」</p>`}
+  d.innerHTML=h+'</div></div>';}
+quad();why();legend();table();detail();
+const V1=[['卡卡','purple','confused','#7A60DE'],['怕怕','cyan','scared','#00BEE6'],['悶悶','amber','bored','#F8B800'],['嗚嗚','pink','sad','#FF78C2'],['耶耶','orange','happy','#FF7738'],['比比','green','envy','#009A5E'],['噓噓','brown','embarrassed','#8D5A32']];
+document.getElementById('v1').innerHTML=V1.map(r=>`<div style="text-align:center">${blob(r[1],r[2],{box:44,color:r[3]})}<div style="font-size:12px">${r[0]}</div></div>`).join('');
+const V2=[['衝衝','orange','rush','#FF854A'],['刺刺','purple','sharp','#7F6CDF'],['暖暖','amber','warm','#F3C11B'],['抖抖','cyan','shaky','#03C5E9'],['淡淡','green','cool','#00A36E'],['欸欸','pink','curious','#FF87C7']];
+document.getElementById('v2').innerHTML=V2.map(r=>`<div style="text-align:center">${blob(r[1],r[2],{box:44,color:r[3]})}<div style="font-size:12px">${r[0]}</div></div>`).join('');
+const RG=[['叮咚','lime','#E9FF45'],['好奇星','purple','#7A60DE'],['抱抱','pink','#FF78C2'],['樹洞','brown','#8D5A32'],['火花','orange','#FF7738'],['小暖','amber','#F8B800'],['慢慢','cyan','#00BEE6'],['芽芽','green','#009A5E']];
+document.getElementById('rong').innerHTML=RG.map(r=>`<div style="text-align:center">${blob(r[1],'rong',{box:44,color:r[2]})}<div style="font-size:12px">${r[0]}</div></div>`).join('');
+</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>別人怎麼做｜學習陪伴角色</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.cmp{border-collapse:collapse;width:100%;min-width:1092px;table-layout:fixed;background:#fff;border-radius:16px;overflow:hidden}
+.cmp col.c-pic{width:124px}.cmp col.c-name{width:146px}.cmp col.c-story{width:168px}.cmp col.c-arrow{width:18px}.cmp col.c-hl{width:250px}.cmp col.c-n{width:60px}.cmp col.c-look{width:168px}.cmp col.c-take{width:140px}
+.cmp th{font-weight:500;font-size:13px;color:var(--muted);text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:bottom}
+.cmp th small{display:block;font-size:11px;font-weight:400}
+.cmp td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:middle;font-size:14px}
+.cmp td.pic{padding:8px}.cmp td.pic .pic{width:108px;height:76px}
+.cmp td.name b{display:block;font-weight:600}.cmp td.name .lk{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}.cmp td.name a{font-size:12px}
+.cmp .arrow{color:#bbb;text-align:center;padding:0}
+.cmp .hl{background:#f6f8e3}.cmp td.hl b{font-weight:600}
+.cmp .take{color:var(--muted)}
+.chars{border-collapse:collapse;width:100%;font-size:14px;background:#fff;border-radius:12px;overflow:hidden}
+.chars th{font-weight:500;color:var(--muted);font-size:12px;text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+.chars td{padding:8px 10px;border-bottom:1px solid #eee;vertical-align:top}.chars td b{font-weight:600}
+.chars th:first-child,.chars td:first-child{white-space:nowrap;width:92px}.chars td:nth-child(2){width:150px}.chars td:nth-child(3){width:150px}
+.two.case{grid-template-columns:5fr 7fr}@media (max-width:900px){.two.case{grid-template-columns:1fr}}
+.casepic{height:260px}
+.casepic img{width:100%;height:100%;object-fit:cover}
+.casepic.contain img{object-fit:contain;background:#fff}
+</style>
+</head>
+<body>
+<main>
+
+<section class="hero"><div class="wrap">
+  <div class="hero-grid">
+    <div>
+      <span class="fact">Inside Out <b>5</b> 個角色，吉伊卡哇 <b>3</b> 個，Mr. Men <b>92</b> 個</span>
+      <h1>十二個作品怎麼切角色</h1>
+      <p class="lead">動畫、繪本、遊戲、app、角色商品各挑幾個，看它們把角色分開的方法。看三件事：這是什麼故事、角色是誰又差在哪、長什麼樣。中間那件是我們真正要學的。</p>
+      <div class="btn-row"><a class="btn" href="#對照">對照表</a><a class="btn sec" href="#學到">帶走的四條規則</a></div>
+    </div>
+    <div class="grid g2" style="gap:12px">
+      <a class="pic" style="height:120px" href="#對照"><img src="../../../../attachments/陪伴ref-角落小夥伴.png" alt=""></a>
+      <a class="pic" style="height:120px" href="#對照"><img src="../../../../attachments/陪伴ref-InsideOut2.jpg" alt="" style="object-position:top"></a>
+      <a class="pic" style="height:120px" href="#對照"><img src="../../../../attachments/陪伴ref-Duolingo.png" alt="" style="object-position:left top"></a>
+      <a class="pic" style="height:120px" href="#對照"><img src="../../../../attachments/陪伴ref-吉伊卡哇.jpg" alt="" style="object-fit:contain;background:#fff"></a>
+    </div>
+  </div>
+</div></section>
+
+<section id="對照"><div class="wrap">
+  <div class="kicker">對照表</div>
+  <h2>十二個作品的切法</h2>
+  <div class="tscroll" id="cmp"></div>
+</div></section>
+
+<section class="alt" id="角色清單"><div class="wrap">
+  <div class="kicker">核心角色</div>
+  <h2>主要角色的名字、顏色、樣貌</h2>
+  <div class="sel" id="sel"></div>
+  <div class="two case">
+    <div class="pic casepic" id="casepic"></div>
+    <div id="chars"></div>
+  </div>
+</div></section>
+
+<section id="學到"><div class="wrap">
+  <div class="kicker">從案例學到的</div>
+  <h2>從這些作品學到的</h2>
+  <div>
+    <div class="insight"><h3>數量要設限</h3><p>Inside Out 用五個，不是因為情緒只有五種，是因為「15 到 20 個角色會是一場混亂」。Mr. Men 一特質一角色，長到 92 個，彼此不互動。</p></div>
+    <div class="insight"><h3>負面可以當主角</h3><p>角落小夥伴每個角色一件自卑或害怕的事，台灣小學生最愛。安心來自被接納，不是被改正。</p></div>
+    <div class="insight"><h3>三個就夠鮮明</h3><p>吉伊卡哇三個朋友：膽小、開朗、暴衝。同一個危險，三種反應。差異不在長相，在怎麼反應。</p></div>
+    <div class="insight"><h3>對立才有戲</h3><p>Duolingo 角色兩兩相反：外向配內向、緊張配放鬆。目的是每個學習者都找得到一個像自己的。</p></div>
+    <div class="insight"><h3>外型和性格分開</h3><p>動物森友會幾百個鄰居只有八種性格；性格決定對話和作息，外型只決定長相。Rong 原型「形狀決定個性、眼睛決定長相」是同一個做法。</p></div>
+    <div class="insight"><h3>先有目標，再造角色，再測孩子認不認得</h3><p>芝麻街的布偶是為了課程目標才造的，有研究部門測。Daniel Tiger 一集一個情緒策略，但研究說要家長一起聊才有效。</p></div>
+    <div class="insight"><h3>不懲罰</h3><p>Finch 漏一天小鳥不會受苦。對照 My-Pet 靠餵食長、靠答對率分級。自我決定理論說獎勵會削弱動機。</p></div>
+    <div class="insight"><h3>需要時才出現</h3><p>哆啦A夢平常在旁邊，出事才拿道具。Headspace 的色塊從不當主角。角色一直出現會跟教材搶注意力。</p></div>
+  </div>
+</div></section>
+
+<section class="band"><div class="wrap">
+  <div class="kicker">帶去下一頁的</div>
+  <h2>我們的角色要守四條規則</h2>
+  <div class="grid g4" style="margin-bottom:32px"><div class="card"><div class="k">規則一</div><h3>少，而且每一個都要說得出為什麼</h3><p>Inside Out 五個，吉伊卡哇三個；Mr. Men 92 個是反例。</p></div><div class="card"><div class="k">規則二</div><h3>同一件事，反應不同</h3><p>吉伊卡哇：同一個危險，怕、好奇、衝三種反應。差異在反應不在長相。</p></div><div class="card"><div class="k">規則三</div><h3>兩兩相反</h3><p>Duolingo 外向配內向、緊張配放鬆，每個孩子找得到像自己的。</p></div><div class="card"><div class="k">規則四</div><h3>要有缺點，要有負面的</h3><p>角落小夥伴每個角色一種不安，孩子最愛；想像朋友研究：孩子造的朋友常常不聽話。</p></div></div>
+  <h2>最接近我們要做的：角落小夥伴、吉伊卡哇、Duolingo</h2>
+  <div class="grid g3">
+    <div class="card"><div class="pic" style="height:140px;margin-bottom:16px"><img src="../../../../attachments/陪伴ref-角落小夥伴.png" alt="" style="object-position:right"></div><h3>角落小夥伴</h3><p>證明「怕冷」「沒自信」可以是角色的全部，而且孩子會投射。我們的角色可以有缺點，而且缺點就是辨認的方式。</p></div>
+    <div class="card"><div class="pic" style="height:140px;margin-bottom:16px"><img src="../../../../attachments/陪伴ref-吉伊卡哇.jpg" alt="" style="object-fit:contain;background:#fff"></div><h3>吉伊卡哇</h3><p>同一件事三種反應，就是我們要的切法：學習狀態是情境，性格決定反應。三個就夠，六個是上限。</p></div>
+    <div class="card"><div class="pic" style="height:140px;margin-bottom:16px"><img src="../../../../attachments/陪伴ref-Duolingo.png" alt="" style="object-position:left top"></div><h3>Duolingo</h3><p>角色成對對立，而且出現在題目裡「說句子」，不是在旁邊加油。角色要成為內容的一部分，才不會只是裝飾。</p></div>
+  </div>
+  <p style="margin-top:32px"><a class="btn" href="roles.html">我們的角色</a></p>
+</div></section>
+
+</main>
+<footer class="closing"><div class="wrap">
+  <div>美感與數位教科書研究計畫　V1 陪伴角色研究　2026-11　整理：馨儀</div>
+  <details><summary>圖片來源</summary><ul>
+    <li>Inside Out、Inside Out 2 海報、Mr. Tickle 書封、吉伊卡哇第一集封面、哆啦A夢第一集封面、Barbapapa 書封：Wikipedia（版權屬各權利人，內部研究參考）</li>
+    <li>角落小夥伴：san-x.co.jp；Duolingo：blog.duolingo.com 設計稿；Headspace：headspace.com；Finch：finchcare.com；Daniel Tiger：pbskids.org；動物森友會：animalcrossing.nintendo.com</li>
+    <li>芝麻街 Oscar 與操偶師 Carroll Spinney：Wikimedia Commons；Triangle 書封：Open Library</li>
+    <li>Rong 形狀夥伴：師生同步網站的實際元件</li>
+    <li>角色中文名用台灣常見譯名；色碼是依圖取的近似值，不是官方色票</li>
+  </ul></details>
+</div></footer>
+<script src="app.js"></script>
+<script>
+const A=ATT;
+const im=(f,fit='cover',pos='center')=>`<img src="${A}${f}" style="width:100%;height:100%;object-fit:${fit};object-position:${pos}" alt="">`;
+const im2=(f1,f2)=>`<div style="display:flex;gap:3px;width:100%;height:100%"><img src="${A}${f1}" style="flex:1;min-width:0;height:100%;object-fit:cover" alt=""><img src="${A}${f2}" style="flex:1;min-width:0;height:100%;object-fit:cover" alt=""></div>`;
+const C=[
+ {n:'Inside Out',story:'一個 11 歲女孩腦子裡，五種情緒輪流掌控她',unit:'每個角色是一種情緒：樂、憂、怒、驚、厭；13 歲再來焦慮、羨慕、無聊、尷尬',count:'5，13 歲 +4',look:'一情緒一色一體型，表情誇張',take:'數量設限；轉銜時加角色',site:'https://movies.disney.com/inside-out-2',lib:'Inside Out 的情緒怎麼選（Ekman、Keltner）',pic:im2('陪伴ref-InsideOut1.jpg','陪伴ref-InsideOut2.jpg'),big:['陪伴ref-InsideOut2.jpg','cover'],
+  chars:[['樂樂','Joy','#F5D33B 黃，藍髮','細長、會發光、綠洋裝、赤腳','永遠要你開心，第二集學會放手'],['憂憂','Sadness','#4F7BD9 藍','矮圓、大眼鏡、白高領毛衣','慢、常躺下；悲傷有用的證明'],['怒怒','Anger','#E2432E 紅','方磚、西裝領帶、頭頂噴火','一點就炸'],['驚驚','Fear','#9B6BD2 紫','瘦高、一根頭髮、領結','什麼都怕，負責預警'],['厭厭','Disgust','#6DBE45 綠','長睫毛、圍巾、翻白眼','嫌東嫌西，保護你不吃壞東西'],['阿焦','Anxiety（IO2）','#F28C28 橘','毛躁爆炸頭、睜大眼、條紋毛衣','預想一切可能出錯的事'],['阿慕','Envy（IO2）','#3EC9C5 青綠','很小、超大亮晶晶的眼','什麼都想要別人的'],['阿廢','Ennui（IO2）','#5B5BA8 靛紫','癱在沙發、滑手機、半閉眼','什麼都無聊'],['阿羞','Embarrassment（IO2）','#E8588A 粉紅','巨大、連帽衫、躲進帽子','一尷尬就縮起來']]},
+ {n:'Mr. Men',story:'每本書一位先生，一種特質鬧一個故事',unit:'每個角色只有一個特點：愛搔癢的、永遠開心的、老是撞到的',count:'92',look:'圓色塊＋手臂、帽子，粗線',take:'鮮明，但沒上限',site:'https://www.mrmen.com/',lib:'Mr. Men：一角色一特質',pic:im('陪伴ref-MrTickle.jpg','contain'),big:['陪伴ref-MrTickle.jpg','contain'],
+  chars:[['搔癢先生','Mr. Tickle','#F58220 橘','圓、超長彈簧手臂、藍帽','到處搔人癢'],['快樂先生','Mr. Happy','#FFD200 黃','正圓、大笑臉','永遠開心'],['碰碰先生','Mr. Bump','#3B8BD9 藍','圓、頭上綁繃帶','走到哪撞到哪'],['愛生氣先生','Mr. Grumpy','#5B7FC7 藍灰','長方形、皺眉、帽子','什麼都不順眼'],['大力先生','Mr. Strong','#E53935 紅','正方形、綠帽','力大無窮'],['陽光小姐','Little Miss Sunshine','#FFD200 黃','圓、辮子、笑臉','讓人開心']]},
+ {n:'角落小夥伴',story:'一群覺得待在角落最安心的傢伙住在一起',unit:'每個角色有一件自卑或害怕的事：怕冷、不確定自己是不是企鵝、沒人要吃、害羞、怕身分曝光',count:'5 主角',look:'矮方、粉嫩、點眼，擠在角落',take:'負面可以當主角',site:'https://www.san-x.co.jp/sumikko/',lib:'角落小夥伴：每個角色一種不安',pic:im('陪伴ref-角落小夥伴.png','cover','right'),big:['陪伴ref-角落小夥伴.png','cover'],
+  chars:[['白熊','しろくま Shirokuma','#FFFFFF 白，粉紅耳','圓胖、常裹粉紅點點包巾','怕冷，從北方逃來'],['企鵝？','ぺんぎん？ Penguin?','#C8E6A0 淡綠','圓、黃嘴、頭頂好像少了盤子','不確定自己是不是企鵝'],['炸豬排','とんかつ Tonkatsu','#D9A066 褐邊，粉肉','圓、1% 肉 99% 肥','沒人要吃的那一塊'],['貓','ねこ Neko','#FFF3C4 奶黃，褐斑','圓、常縮著抓牆','害羞'],['蜥蜴','とかげ Tokage','#8FD3C8 藍綠','圓、小尾巴','其實是恐龍，怕被發現'],['炸蝦尾、包巾、珍珠、雜草、灰塵','配角','各色','更小、更邊角','各有一種被剩下的理由']]},
+ {n:'吉伊卡哇',story:'三隻小動物在危險的世界打工過日子',unit:'三個朋友，個性完全不同：一個膽小愛哭、一個開朗愛講話、一個暴衝；同一件事三種反應',count:'3',look:'二頭身、白底、細線，眼睛演',take:'三個就夠；同一危機三種反應',site:'https://chiikawa-info.jp/',lib:'吉伊卡哇：三個就夠',pic:im('陪伴ref-吉伊卡哇.jpg','contain'),big:['陪伴ref-吉伊卡哇.jpg','contain'],
+  chars:[['吉伊卡哇','ちいかわ Chiikawa','#FFFFFF 白，粉頰','小、圓、像倉鼠、常流淚','膽小愛哭但善良；不太會講話'],['小八','ハチワレ Hachiware','#FFFFFF 白＋#5BA7E0 藍（八字臉）','貓、藍耳藍背、會笑','開朗、好奇、三個裡唯一會講話'],['烏薩奇','うさぎ Usagi','#FFF6C8 淡黃','兔、長耳、大嘴','暴衝、吵、最強'],['栗子饅頭、飛鼠、獅薩','くりまんじゅう／モモンガ／シーサー','褐／白／橘','配角','各一種怪癖']]},
+ {n:'Duolingo',story:'語言 app 裡陪你練習的一群人',unit:'每個角色一種個性，而且兩兩相反：外向的 Zari 配內向的 Lily、緊張的 Bea 配放鬆的 Lin',count:'10',look:'Duo 的幾何元件套到人身上',take:'對立才有戲；每人找得到像自己的',site:'https://design.duolingo.com/',lib:'Duolingo 角色群：讓每個學習者找到自己',pic:im('陪伴ref-Duolingo.png','cover','left top'),big:['陪伴ref-Duolingo.png','cover'],
+  chars:[['多兒','Duo','#58CC02 綠','貓頭鷹、大眼、分離的腳','催你練習的吉祥物'],['莉莉','Lily','紫髮、黑衣','青少女、面無表情','超內向、自我保護式的諷刺'],['莎麗','Zari','（官方未標色）','青少女、Lily 的好友','超外向、十個社團'],['貝婭','Bea','（官方未標色）','成人、束髮','有野心、神經質'],['林','Lin','（官方未標色）','青少女','超放鬆、愛三明治'],['小俊','Junior','橘髮、紅上衣','小男孩、背包','Eddy 的兒子'],['奧斯卡','Oscar','白髮白鬍','老先生','藝術老師、挑剔'],['露西','Lucy','灰髮','老太太','神秘的過去'],['艾迪、維克蘭、法斯塔夫','Eddy／Vikram／Falstaff','（官方未標色）','爸爸／叔叔／大熊','健身狂／愛做菜／愛吃']]},
+ {n:'Headspace',story:'冥想 app 用色塊動畫講情緒',unit:'沒有固定角色，一百多個色塊換來換去，誰都不是主角',count:'150+',look:'幾何色塊＋一個微笑',take:'極簡色塊能承載情緒，但不是陪伴者',site:'https://www.headspace.com/',lib:'Headspace 與 Finch：陪伴 App 的色塊和小鳥',pic:im('陪伴ref-Headspace.png','cover','right'),big:['陪伴ref-Headspace.png','cover'],
+  chars:[['（無具名角色）','—','橘色塊為主，配紫、藍、黃','幾何色塊、只有一個微笑','沒有性格，只有情緒圖解']]},
+ {n:'Finch',story:'你每天做自我照顧，小鳥就有力氣去冒險',unit:'只有一隻，是你的，你幫牠取名',count:'1',look:'圓鳥、淡色',take:'漏一天不懲罰',site:'https://finchcare.com/',lib:'Headspace 與 Finch：陪伴 App 的色塊和小鳥',pic:im('陪伴ref-Finch.png'),big:['陪伴ref-Finch.png','cover'],
+  chars:[['你的小鳥','Finch（玩家自己取名）','玩家選色：橘、藍、灰等','圓鳥、腮紅、小翅膀','你照顧牠，牠去冒險']]},
+ {n:'哆啦A夢',story:'未來的機器貓陪一個什麼都做不好的小孩',unit:'只有一個陪伴者，出事就從口袋拿道具',count:'1',look:'藍白圓、極簡五官',take:'需要時才出現',site:'https://dora-world.com/',lib:'',pic:im('陪伴ref-哆啦A夢.jpg','contain'),big:['陪伴ref-哆啦A夢.jpg','contain'],
+  chars:[['哆啦A夢','ドラえもん Doraemon','#1E90FF 藍＋白肚','圓、沒耳朵、紅項圈鈴鐺、四次元口袋','有事就拿道具；怕老鼠'],['大雄','のび太 Nobita','黃上衣','眼鏡男孩','什麼都做不好，所以需要陪伴者'],['哆啦美','ドラミ Dorami','#FFD200 黃','圓、有耳朵、蝴蝶結','比哥哥可靠']]},
+ {n:'芝麻街／Daniel Tiger',story:'兒童節目，每個布偶負責一個學習目標',unit:'每個角色教一件事：艾摩教問問題、餅乾怪獸教忍住、丹尼爾老虎每集教一個情緒方法',count:'多',look:'毛布偶、大眼；一集一首歌',take:'有根的典範；要大人接住',site:'https://www.sesamestreet.org/｜https://pbskids.org/daniel/',lib:'Daniel Tiger 與芝麻街：角色照目標設計、照研究測',pic:im2('陪伴ref-芝麻街.jpg','陪伴ref-DanielTiger.jpg'),big:['陪伴ref-DanielTiger.jpg','cover'],
+  chars:[['艾摩','Elmo','#E53935 紅','毛茸茸、橘鼻','三歲半的心智，什麼都問'],['大鳥','Big Bird','#FFD200 黃','8 呎高、羽毛','六歲的心智，天真'],['餅乾怪獸','Cookie Monster','#2E6FD9 藍','毛茸茸、亂眼','自制力的反面教材'],['奧斯卡','Oscar the Grouch','#4C8C3F 綠','住垃圾桶、單眉','愛抱怨，負面角色'],['丹尼爾老虎','Daniel Tiger','#F28C28 橘條紋，紅毛衣','四歲小老虎、球鞋','每集學一個情緒策略，用歌記'],['凱特琳娜、O 貓頭鷹、星期三王子','Katerina Kittycat／O the Owl／Prince Wednesday','粉／藍／紫','丹尼爾的同學','各一種小孩：愛跳舞、愛讀書、愛演']]},
+ {n:'Animal Crossing',story:'搬到島上跟動物鄰居過日子',unit:'幾百個鄰居只有八種個性：懶的、愛運動的、暴躁的、自戀的、普通的、元氣的、成熟的、大姐頭',count:'8',look:'外型幾百種，性格只有八種',take:'外型與性格分離',site:'https://animalcrossing.nintendo.com/new-horizons/',lib:'Animal Crossing 村民八種性格',pic:im('陪伴ref-AnimalCrossing.jpg'),big:['陪伴ref-AnimalCrossing.jpg','cover'],
+  chars:[['悠閒','Lazy ぼんやり','—','男','愛吃愛睡，講話慢'],['運動','Jock ハキハキ','—','男','滿腦子肌肉'],['暴躁','Cranky コワイ','—','男','低沉、嘴硬心軟'],['自戀','Smug キザ','—','男','紳士腔、愛耍帥'],['普通','Normal ふつう','—','女','溫和、愛讀書'],['元氣','Peppy ゲンキ','—','女','興奮、想當偶像'],['成熟','Snooty オトナ','—','女','講究、有點高傲'],['大姐姐','Big Sister アネキ','—','女','豪爽、會罩你']]},
+ {n:'Barbapapa／Triangle',story:'一家會變形的粉紅生物；三個幾何形狀互相惡作劇',unit:'角色就是形狀本身：Barbapapa 一家一人一色一種興趣；Triangle 書裡三角、方、圓各一種脾氣',count:'1 家／3',look:'色塊＋兩個眼睛',take:'不需要四肢',site:'https://www.barbapapa.com/｜https://www.macbarnett.com/',lib:'',pic:im2('陪伴ref-Barbapapa.jpg','陪伴ref-Triangle.jpg'),big:['陪伴ref-Triangle.jpg','contain'],
+  chars:[['巴巴爸爸','Barbapapa','#F4A6C8 粉紅','梨形、會變任何形狀','溫和、什麼都接得住'],['巴巴媽媽','Barbamama','#222222 黑','同形','堅定'],['七個小孩','Barbazoo 黃、Barbalala 綠、Barbalib 橘、Barbabeau 黑毛、Barbabelle 紫、Barbabright 藍、Barbabravo 紅','一人一色','同形','一人一種興趣：動物、音樂、書、畫、美、科學、運動'],['三角形','Triangle（Mac Barnett × Jon Klassen）','#333333 深灰黑','三角形＋兩隻眼＋兩條腿','愛惡作劇'],['方形、圓形','Square／Circle','灰','方、圓','各一種脾氣']]},
+ {n:'Rong 形狀夥伴（現有）',story:'課本裡陪你的形狀夥伴',unit:'八個好脾氣的夥伴：溫暖的、好奇的、傾聽的、愛抱的、慢的、長大的、衝的、有創意的',count:'8',look:'鵝卵石＋15 種眼睛',take:'全是正向，缺負面；不沿用',site:'',lib:'',pic:`<div style="display:flex;gap:6px;align-items:center;justify-content:center;height:100%">${['amber','purple','brown','pink'].map(k=>blob(k,'rong',{box:30,color:{amber:'#F8B800',purple:'#7A60DE',brown:'#8D5A32',pink:'#FF78C2'}[k]})).join('')}</div>`,big:null,
+  chars:[['叮咚','lime','#E9FF45','寬扁','創意與聯想'],['好奇星','purple','#7A60DE','斜圓','好奇探索'],['抱抱','pink','#FF78C2','多邊形','情感連結'],['樹洞','brown','#8D5A32','圓','接納傾聽'],['火花','orange','#FF7738','大圓','行動突破'],['小暖','amber','#F8B800','橫圓','溫暖鼓勵'],['慢慢','cyan','#00BEE6','圓','從容專注'],['芽芽','green','#009A5E','小圓','成長嘗試']]},
+];
+const LIB='../../../../library/';
+document.getElementById('cmp').innerHTML=`<table class="cmp"><colgroup><col class="c-pic"><col class="c-name"><col class="c-story"><col class="c-arrow"><col class="c-hl"><col class="c-n"><col class="c-arrow"><col class="c-look"><col class="c-take"></colgroup><thead><tr>
+<th></th><th>作品</th><th>這是什麼故事<small>一句講完</small></th><th class="arrow">→</th><th class="hl">角色是誰、差在哪<small>我們要比的</small></th><th class="hl">幾個</th><th class="arrow">→</th><th>長什麼樣<small>靠什麼認出來</small></th><th class="take">對我們</th></tr></thead><tbody>`+
+C.map((c,i)=>`<tr><td class="pic"><div class="pic">${c.pic}</div></td><td class="name"><b>${c.n}</b><div class="lk"><a href="#角色清單" onclick="pick(${i})">角色</a>${c.site.split('｜').filter(Boolean).map(u=>`<a href="${u}" target="_blank">官方 ↗</a>`).join('')}</div></td><td>${c.story}</td><td class="arrow">→</td><td class="hl"><b>${c.unit}</b></td><td class="hl">${c.count}</td><td class="arrow">→</td><td>${c.look}</td><td class="take">${c.take}</td></tr>`).join('')+'</tbody></table>';
+let cur=0;
+function sw(c){const m=(c||'').match(/#[0-9A-Fa-f]{6}/);return m?`<i class="sw" style="background:${m[0]}"></i>`:''}
+function pick(i){cur=i;render()}
+function render(){
+  document.getElementById('sel').innerHTML=C.map((c,i)=>`<button class="${i===cur?'on':''}" onclick="pick(${i})">${c.n}</button>`).join('');
+  const c=C[cur];
+  const pc=document.getElementById('casepic');
+  if(c.big){pc.className='pic casepic'+(c.big[1]==='contain'?' contain':'');pc.innerHTML=`<img src="${A}${c.big[0]}" alt="">`}
+  else{pc.className='pic casepic';pc.innerHTML=`<div style="display:flex;gap:10px;align-items:center;justify-content:center;height:100%;flex-wrap:wrap;padding:16px">${['lime','purple','pink','brown','orange','amber','cyan','green'].map(k=>blob(k,'rong',{box:52,color:{lime:'#E9FF45',purple:'#7A60DE',pink:'#FF78C2',brown:'#8D5A32',orange:'#FF7738',amber:'#F8B800',cyan:'#00BEE6',green:'#009A5E'}[k]})).join('')}</div>`}
+  document.getElementById('chars').innerHTML=`<table class="chars"><thead><tr><th>角色</th><th>原文／英文</th><th>顏色</th><th>樣貌</th><th>性格一句</th></tr></thead><tbody>${c.chars.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${sw(r[2])}${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td></tr>`).join('')}</tbody></table>`;
+}
+render();
+</script>
+</body>
+</html>

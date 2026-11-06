@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>學習陪伴角色</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.entry{display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--s-5)}
+@media (max-width:900px){.entry{grid-template-columns:1fr}}
+.entry a.card{display:flex;flex-direction:column;gap:var(--s-3);min-height:360px}
+.entry .no{font-size:13px;color:var(--muted);font-weight:500}
+.entry h3{font-size:22px;margin:0}
+.entry .ans{font-size:15px;margin:0}
+.entry .vis{margin-top:auto;height:120px;display:flex;align-items:flex-end;gap:6px}
+.entry .vis .pic{height:120px;flex:1}
+.entry .go{font-size:14px;font-weight:500;text-decoration:underline;text-underline-offset:3px}
+.ages{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;width:100%}
+.ages div{background:var(--g-main);border-radius:8px;padding:8px;font-size:12px;line-height:1.4}
+.ages b{display:block;font-weight:600;font-size:13px}
+</style>
+</head>
+<body>
+<main>
+
+<section class="hero"><div class="wrap">
+  <div class="hero-grid">
+    <div>
+      <span class="fact">數位教科書 V1　2026-11</span>
+      <h1>數位課本裡的學習夥伴</h1>
+      <p class="lead">紙本課本給不了互動和陪伴。我們想在數位課本裡放幾個陪孩子學習的角色，像 Inside Out 那樣性格分明，但是陪學習的。三步：先弄清楚孩子需要什麼，再看別人怎麼切角色，最後決定我們的角色。每一步的結論帶到下一步。</p>
+      <div class="btn-row"><a class="btn" href="needs.html">從孩子需要什麼開始</a></div>
+    </div>
+    <div class="card" id="cast"></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="entry">
+    <a class="card" href="needs.html">
+      <div class="no">一</div>
+      <h3>孩子需要什麼</h3>
+      <p class="ans">台灣孩子成績世界前三，焦慮也前三。家長推、補習推、會考推，孩子不缺推。缺的是做得到、有趣、不被比較、有人聽，而且四個年段各不同。</p>
+      <div class="vis"><div class="ages"><div><b>低年級</b>造想像朋友</div><div><b>中年級</b>做得到、有趣</div><div><b>高年級</b>自信開始掉</div><div><b>國中</b>開始跟人比</div></div></div>
+      <span class="go">四個年段、台灣的數字、九條需求、研究依據</span>
+    </a>
+    <a class="card" href="cases.html">
+      <div class="no">二</div>
+      <h3>別人怎麼做</h3>
+      <p class="ans">Inside Out 把情緒切成五個，角落小夥伴每個角色一種不安，吉伊卡哇三個朋友對同一件事三種反應，Duolingo 的角色兩兩相反。十二個作品一張對照表。</p>
+      <div class="vis"><div class="pic"><img src="img/陪伴ref-角落小夥伴.png" alt="" style="object-position:right"></div><div class="pic"><img src="img/陪伴ref-InsideOut2.jpg" alt="" style="object-position:top"></div><div class="pic"><img src="img/陪伴ref-吉伊卡哇.jpg" alt="" style="object-fit:contain;background:#fff"></div></div>
+      <span class="go">對照表、每個作品的主要角色、學到什麼</span>
+    </a>
+    <a class="card" href="roles.html">
+      <div class="no">三</div>
+      <h3>我們的角色</h3>
+      <p class="ans">一個朋友怎麼對你，只有兩個問題：它帶頭還是跟著你、它熱還是冷。四種答案就是四種同學，也就是四個角色：衝衝、刺刺、暖暖、淡淡。卡住、怕考、無聊每個角色都接，差別在怎麼接。</p>
+      <div class="vis" id="six"></div>
+      <span class="go">推論、四個角色、反應矩陣、要決定的事</span>
+    </a>
+  </div>
+</div></section>
+
+<section class="band"><div class="wrap">
+  <div class="two">
+    <div>
+      <div class="kicker">還沒定的</div>
+      <h2>四件事等拍板</h2>
+      <ol class="decide">
+        <li><div><b>照性格切這條路可以嗎</b></div></li>
+        <li><div><b>四個夠不夠，要不要第五個</b></div></li>
+        <li><div><b>毒舌的刺刺留不留</b></div></li>
+        <li><div><b>名字和口頭禪要不要先定一版去問孩子</b></div></li>
+      </ol>
+    </div>
+    <div class="card"><div class="k">我的判斷</div><p>可以；四個先拿去問孩子，認得出再談加；刺刺留，國中台詞變軟；先定一版，入校時用五分鐘教案流程讓全班投票。</p><p style="margin-top:16px"><a class="btn" href="roles.html#拍板">看理由</a></p></div>
+  </div>
+</div></section>
+
+</main>
+<footer class="closing"><div class="wrap">
+  <div>美感與數位教科書研究計畫　V1 陪伴角色研究　2026-11　整理：馨儀</div>
+</div></footer>
+<script src="app.js"></script>
+<script>
+document.getElementById('cast').innerHTML='<div class="k">四個角色</div><div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end">'+ROLES.map(r=>`<div style="text-align:center">${blob(r.sh,r.id,{box:64,color:r.col})}<div style="font-size:13px;margin-top:4px">${r.n}</div></div>`).join('')+'</div>';
+document.getElementById('six').innerHTML=ROLES.map(r=>blob(r.sh,r.id,{box:52,color:r.col})).join('');
+</script>
+</body>
+</html>
