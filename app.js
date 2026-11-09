@@ -27,9 +27,9 @@ SH.bean = { w: 112, h: 170, fx: 56, fy: 66, d: 'M56 4 C88 4 106 42 104 82 C102 1
 function face(kind,k,ink,body){
   const g=7.4*k,R=6.2*k,B='#1A1A1A',W='#fff';
   const L=`stroke="${ink}" stroke-width="${2.6*k}" stroke-linecap="round" stroke-linejoin="round" fill="none"`;
-  const eye=(x,pr=3.1*k,dx=0,dy=0)=>`<circle cx="${x}" cy="0" r="${R}" fill="${W}"/><circle cx="${x+dx}" cy="${dy}" r="${pr}" fill="${B}"/><circle cx="${x+dx+pr*.4}" cy="${dy-pr*.4}" r="${pr*.3}" fill="#fff"/>`;
+  const eye=(x,pr=3.1*k,dx=0,dy=0)=>`<circle cx="${x}" cy="0" r="${R}" fill="${W}"/><circle cx="${x+dx}" cy="${dy}" r="${pr}" fill="${B}"/>`;
   const both=f=>f(-g)+f(g);
-  const blush=`<circle cx="${-g-4*k}" cy="${5.5*k}" r="${3*k}" fill="#F08A8A" opacity=".35"/><circle cx="${g+4*k}" cy="${5.5*k}" r="${3*k}" fill="#F08A8A" opacity=".35"/>`;
+  const blush='';
   switch(kind){
     case 'curious': return eye(-g,3.1*k)+eye(g,3.5*k,.5*k)+`<path d="M${g-4.5*k} ${-10*k} Q${g} ${-12.5*k} ${g+4.5*k} ${-10.5*k}" ${L}/><circle cx="0" cy="${9*k}" r="${2.2*k}" fill="${ink}"/>`+blush;
     case 'lazy': return both(x=>eye(x,3*k,0,.3*k)+`<rect x="${x-R-1}" y="${-R-1}" width="${2*R+2}" height="${R*.75}" fill="${body}"/>`)+`<path d="M${-3*k} ${8.5*k} Q0 ${10.5*k} ${3*k} ${8.5*k}" ${L}/>`+blush;
