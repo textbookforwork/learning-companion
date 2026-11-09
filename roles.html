@@ -191,13 +191,15 @@ function detail(){const d=document.getElementById('detail');const c=ROLES.find(x
   let h=`<div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">${blob(c.sh,c.id,{box:72,color:c.col})}<div style="flex:1;min-width:240px"><h3 style="margin:0">${c.n}　<span class="muted" style="font-weight:400;font-size:14px">${c.pos}，${c.like}</span></h3><p>做法：${c.how}</p><p>缺點：${c.bad}</p><p>負責：${c.need}</p>`;
   if(cell){const s=SITUATIONS[cell[0]];h+=`<p style="margin-top:8px;padding:8px 12px;background:#f5f5f3;border-radius:8px">${s.n}：「${s.r[cell[1]]}」</p>`}
   d.innerHTML=h+'</div></div>';}
-/* 另一面：第二色出現的時刻。每張卡四拍：遇到 → 動了 → 透色 → 退回。GSAP 驅動 SVG，第二色用徑向漸層從身體中心透出（跟身體共用同一條路徑、同一個濾鏡），只透出一小塊，臉不換、不疊剪影 */
+/* 另一面：第二色出現的時刻。每張卡四拍：遇到 → 動了 → 透色 → 退回。GSAP 驅動 SVG，第二色像水位從腳底漲到半身，波浪面會流動，臉不換、不疊剪影 */
 (function(){
   const byId=Object.fromEntries(ROLES.map(r=>[r.id,r]));
   const el=document.getElementById('other'),btn=document.getElementById('playall');
   const RM=matchMedia('(prefers-reduced-motion: reduce)').matches,G=typeof gsap!=='undefined'&&!RM;
   const STEPS=['遇到','動了','透色','退回'];
-  const bloom=(id,t)=>(S,k)=>{const cx=(S.x0||0)+S.w/2,cy=(S.y0||0)+S.h*.78;return `<radialGradient id="bl-${id}" gradientUnits="userSpaceOnUse" cx="${cx}" cy="${cy}" r="0"><stop offset=".35" stop-color="${t.col}"/><stop offset="1" stop-color="${t.col}" stop-opacity="0"/></radialGradient><path class="bloom" d="${S.d}" fill="url(#bl-${id})" opacity=".9" ${S.filt?`filter="url(#${S.filt})"`:''}/>`};
+  /* 第二色像水位從腳底漲上來：波浪面的填充，剪在身體輪廓裡，跟身體用同一個濾鏡 */
+  const wavePath=(S)=>{const x0=S.x0||0,y0=S.y0||0,w=S.w,h=S.h,A=h*.05,L=w*.5;let d=`M${x0-w} ${y0}`;let up=true;for(let x=x0-w;x<x0+2*w;x+=L/2){d+=` Q${x+L/4} ${y0+(up?-A:A)*2} ${x+L/2} ${y0}`;up=!up}return d+` L${x0+2*w} ${y0+3*h} L${x0-w} ${y0+3*h}Z`};
+  const bloom=(id,t)=>(S,k)=>{const f=S.filt?`filter="url(#${S.filt})"`:'';return `<clipPath id="cp-${id}"><path d="${S.d}"/></clipPath><g clip-path="url(#cp-${id})"><g class="wave" transform="translate(0 ${S.h*1.15})"><g class="flow"><path d="${wavePath(S)}" fill="${t.col}" opacity=".92" ${f}/><path d="${wavePath(S)}" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="${S.h*.035}" ${f}/></g></g></g>`};
   el.innerHTML=ROLES.map(c=>{const o=OTHER[c.id],t=byId[o.to];return `<div class="o" data-id="${c.id}" tabindex="0" role="button" aria-label="播放 ${c.n} 的另一面">
     <div class="stage"><div class="chip">${o.when}</div><div class="pic-o">${blob(c.sh,c.id,{box:84,color:c.col,extra:bloom(c.id,t)})}</div></div>
     <div><div class="n">${c.n}　<span class="when">${o.when}的時候，透出${t.n}的${t.pos.replace('的','')}</span></div><div class="say">「<span class="txt">${o.say}</span><span class="cur off"></span>」</div><div class="why">${o.why}</div><div class="steps">${STEPS.map(s=>`<span>${s}</span>`).join('')}</div></div></div>`}).join('');
@@ -211,30 +213,31 @@ function detail(){const d=document.getElementById('detail');const c=ROLES.find(x
     bouncy:(tl,s)=>tl.to(s,{scaleY:.78,scaleX:1.12,y:14,rotation:3,duration:.5,ease:'power2.inOut'}),
   };
   const ctrls=[...el.querySelectorAll('.o')].map(d=>{
-    const c=byId[d.dataset.id],o=OTHER[c.id],t=byId[o.to],S=SH[c.sh],R=Math.max(S.w,S.h)*.42;
-    const svg=d.querySelector('.pic-o svg'),chip=d.querySelector('.chip'),txt=d.querySelector('.txt'),cur=d.querySelector('.cur'),grad=d.querySelector('radialGradient'),steps=[...d.querySelectorAll('.steps span')];
+    const c=byId[d.dataset.id],o=OTHER[c.id],t=byId[o.to],S=SH[c.sh],DOWN=S.h*1.15,UP=S.h*.62,L=S.w*.5;
+    const svg=d.querySelector('.pic-o svg'),wave=d.querySelector('.wave'),flow=d.querySelector('.flow'),chip=d.querySelector('.chip'),txt=d.querySelector('.txt'),cur=d.querySelector('.cur'),steps=[...d.querySelectorAll('.steps span')];
     const step=i=>()=>steps.forEach((s,j)=>s.classList.toggle('on',j===i));
-    let tl=null,done=null;
+    let tl=null,done=null,ripple=null;
+    const stopRipple=()=>{if(ripple){ripple.kill();ripple=null;gsap.set(flow,{x:0})}};
     const finish=()=>{if(done){const f=done;done=null;f()}};
     if(!G){ /* 沒有 GSAP 或使用者關了動態：只換色 */
-      const on=f=>{grad.setAttribute('r',f?R:0);chip.style.opacity=f?1:0;chip.style.transform='none';step(f?2:-1)()};
+      const on=f=>{wave.setAttribute('transform',`translate(0 ${f?UP:DOWN})`);chip.style.opacity=f?1:0;chip.style.transform='none';step(f?2:-1)()};
       const play=()=>new Promise(res=>{on(true);setTimeout(()=>{on(false);res()},1800)});
       d.addEventListener('mouseenter',()=>on(true));d.addEventListener('mouseleave',()=>on(false));d.addEventListener('click',play);
       return {play};
     }
     gsap.set(svg,{transformOrigin:'50% 60%'});
     const breathe=gsap.to(svg,{y:-3,duration:1.6+Math.random()*.6,yoyo:true,repeat:-1,ease:'sine.inOut'});
-    const reset=()=>{if(tl)tl.kill();gsap.set(svg,{clearProps:'transform'});gsap.set(svg,{transformOrigin:'50% 60%'});gsap.set(grad,{attr:{r:0}});gsap.set(chip,{opacity:0,y:-6,scale:.7});txt.textContent=o.say;cur.classList.add('off');step(-1)();d.classList.remove('playing');finish()};
+    const reset=()=>{if(tl)tl.kill();gsap.set(svg,{clearProps:'transform'});gsap.set(svg,{transformOrigin:'50% 60%'});stopRipple();gsap.set(wave,{y:DOWN});gsap.set(chip,{opacity:0,y:-6,scale:.7});txt.textContent=o.say;cur.classList.add('off');step(-1)();d.classList.remove('playing');finish()};
     const play=()=>new Promise(res=>{
       reset();done=res;breathe.pause();d.classList.add('playing');
       tl=gsap.timeline({onComplete:()=>{d.classList.remove('playing');gsap.set(svg,{clearProps:'transform'});gsap.set(svg,{transformOrigin:'50% 60%'});breathe.restart();step(-1)();finish()}});
       tl.call(step(0)).to(chip,{opacity:1,y:0,scale:1,duration:.3,ease:'back.out(2)'});
       tl.call(step(1),null,'+=.15');MOVE[c.id](tl,svg);
-      tl.call(step(2),null,'-=.1').to(grad,{attr:{r:R},duration:.8,ease:'power2.out'},'<');
+      tl.call(step(2),null,'-=.1').call(()=>{stopRipple();ripple=gsap.to(flow,{x:-L,duration:1.1,ease:'none',repeat:-1})},null,'<').to(wave,{y:UP,duration:1.1,ease:'power2.out'},'<').to(wave,{y:UP+S.h*.02,duration:1.4,yoyo:true,repeat:-1,ease:'sine.inOut'},'>');
       tl.call(()=>{txt.textContent='';cur.classList.remove('off')},null,'-=.45');
       Array.from(o.say).forEach((ch,i)=>tl.call(()=>{txt.textContent+=ch},null,i?'+=.045':'+=0'));
       tl.call(()=>cur.classList.add('off'),null,'+=.9');
-      tl.call(step(3)).to(grad,{attr:{r:0},duration:.8,ease:'power2.inOut'}).to(svg,{x:0,y:0,rotation:0,scale:1,scaleX:1,scaleY:1,duration:.7,ease:'elastic.out(1,.5)'},'<').to(chip,{opacity:0,y:-6,duration:.3},'<.2');
+      tl.call(step(3)).call(()=>{tl.getTweensOf(wave).forEach(t=>{if(t.vars.repeat===-1)t.kill()})}).to(wave,{y:DOWN,duration:.9,ease:'power2.in',onComplete:stopRipple}).to(svg,{x:0,y:0,rotation:0,scale:1,scaleX:1,scaleY:1,duration:.7,ease:'elastic.out(1,.5)'},'<').to(chip,{opacity:0,y:-6,duration:.3},'<.2');
     });
     d.addEventListener('mouseenter',()=>{if(!tl||!tl.isActive())play()});
     d.addEventListener('click',play);
