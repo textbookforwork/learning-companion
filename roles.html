@@ -42,7 +42,7 @@
       <span class="fact">問題二、三　性格怎麼選，怎麼跟學習形狀接</span>
       <h1>班上的六個同學，同一件事六種面對方式</h1>
       <p class="lead">角色每個都能當朋友、小老師、對手，差別在性格。孩子跟他們相處，認識不同的人是怎樣的，也從他們怎麼面對事情學。性格從孩子這個年紀真的會長出來的那五種挑，而且好的那端和壞的那端都要有，不然又是一群乖孩子。</p>
-      <div class="btn-row"><a class="btn" href="#推論">推論怎麼來</a><a class="btn sec" href="#面向">性格面向</a></div>
+      <div class="btn-row"><a class="btn" href="#為什麼">為什麼是這六個</a><a class="btn sec" href="#面向">性格面向</a></div>
     </div>
     <div class="card" id="herocast"></div>
   </div>
@@ -58,6 +58,13 @@
     <div class="arr">→</div>
     <div class="card"><div class="k">所以</div><h3>從五大性格的兩端挑</h3><p>孩子要從角色身上學，性格就要選孩子真的會長出來的。研究上最有份量的是五大性格，OECD 用它測過十歲和十五歲的孩子。每一條性格都有兩端，只挑好的那端會變成一群乖孩子，所以兩端都挑：三個偏好、三個偏壞，每個都有缺點。</p></div>
   </div>
+</div></section>
+
+<section id="為什麼"><div class="wrap">
+  <div class="kicker">為什麼是這六個</div>
+  <h2>每個同學都接得回前兩頁</h2>
+  <p class="sub">OECD 的五大性格只是挑人的架子。每個同學存在的理由，是第一頁的某條需求和台灣的某個數字，加上第二頁某個作品證明這種角色孩子會愛。</p>
+  <div class="tscroll"><table class="t" id="whysix"></table></div>
 </div></section>
 
 <section class="alt" id="六個"><div class="wrap">
@@ -174,6 +181,7 @@ function detail(){const d=document.getElementById('detail');const c=ROLES.find(x
   if(cell){const s=SITUATIONS[cell[0]];h+=`<p style="margin-top:8px;padding:8px 12px;background:#f5f5f3;border-radius:8px">${s.n}：「${s.r[cell[1]]}」</p>`}
   d.innerHTML=h+'</div></div>';}
 six();dims();facets();legend();table();detail();
+document.getElementById('whysix').innerHTML='<thead><tr><th>同學</th><th>五大性格的位置</th><th>接第一頁的哪條需求</th><th>第一頁的數字或研究</th><th>第二頁誰證明這種角色行得通</th></tr></thead><tbody>'+ROLES.map(c=>`<tr><td style="white-space:nowrap"><b>${c.n}</b><br><span class="muted" style="font-size:12px">${c.pos}</span></td><td style="font-size:13px">${c.end}</td><td style="font-size:13px">${c.need}</td><td style="font-size:13px">${c.tw}</td><td style="font-size:13px">${c.case}</td></tr>`).join('')+'</tbody>';
 (function(){
   const grey='<svg width="96" height="96" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="#cfcfcb"/></svg>';
   const S=SH.cyan;

@@ -20,25 +20,26 @@ const SH = {
 function face(kind,k,ink,body){
   const g=7.4*k,R=6.2*k,B='#1A1A1A',W='#fff';
   const L=`stroke="${ink}" stroke-width="${2.6*k}" stroke-linecap="round" stroke-linejoin="round" fill="none"`;
-  const eye=(x,pr=3.1*k,dx=0,dy=0)=>`<circle cx="${x}" cy="0" r="${R}" fill="${W}"/><circle cx="${x+dx}" cy="${dy}" r="${pr}" fill="${B}"/>`;
+  const eye=(x,pr=3.1*k,dx=0,dy=0)=>`<circle cx="${x}" cy="0" r="${R}" fill="${W}"/><circle cx="${x+dx}" cy="${dy}" r="${pr}" fill="${B}"/><circle cx="${x+dx+pr*.4}" cy="${dy-pr*.4}" r="${pr*.3}" fill="#fff"/>`;
   const both=f=>f(-g)+f(g);
+  const blush=`<circle cx="${-g-4*k}" cy="${5.5*k}" r="${3*k}" fill="#F08A8A" opacity=".35"/><circle cx="${g+4*k}" cy="${5.5*k}" r="${3*k}" fill="#F08A8A" opacity=".35"/>`;
   switch(kind){
+    case 'curious': return eye(-g,3.1*k)+eye(g,3.5*k,.5*k)+`<path d="M${g-4.5*k} ${-10*k} Q${g} ${-12.5*k} ${g+4.5*k} ${-10.5*k}" ${L}/><circle cx="0" cy="${9*k}" r="${2.2*k}" fill="${ink}"/>`+blush;
+    case 'lazy': return both(x=>eye(x,3*k,0,.3*k)+`<rect x="${x-R-1}" y="${-R-1}" width="${2*R+2}" height="${R*.75}" fill="${body}"/>`)+`<path d="M${-3*k} ${8.5*k} Q0 ${10.5*k} ${3*k} ${8.5*k}" ${L}/>`+blush;
+    case 'nervous': return both(x=>eye(x,3*k,0,-.3*k))+`<path d="M${-g-4.5*k} ${-8.5*k} L${-g+4*k} ${-10.5*k} M${g+4.5*k} ${-8.5*k} L${g-4*k} ${-10.5*k}" ${L} stroke-width="${2*k}"/><path d="M${-3*k} ${9*k} Q${-1.5*k} ${7.8*k} 0 ${9*k} Q${1.5*k} ${10.2*k} ${3*k} ${9*k}" ${L}/>`+blush;
+    case 'warm': return both(x=>`<path d="M${x-4.4*k} ${1.5*k} Q${x} ${-3.5*k} ${x+4.4*k} ${1.5*k}" ${L} stroke-width="${2.6*k}"/>`)+`<path d="M${-4.5*k} ${8*k} Q0 ${12.5*k} ${4.5*k} ${8*k}" ${L}/>`+blush;
+    case 'sharp': return both(x=>eye(x,3*k,1.6*k,.3*k)+`<rect x="${x-R-1}" y="${-R-1}" width="${2*R+2}" height="${R*.6}" fill="${body}"/>`)+`<path d="M${g-4.5*k} ${-10.5*k} L${g+4.5*k} ${-9*k}" ${L}/><path d="M${-3*k} ${9*k} L${3.5*k} ${8*k}" ${L}/>`+blush;
+    case 'bouncy': return both(x=>eye(x,3.4*k))+`<path d="M${-g-4.5*k} ${-9*k} Q${-g} ${-12*k} ${-g+4.5*k} ${-9.5*k} M${g-4.5*k} ${-9.5*k} Q${g} ${-12*k} ${g+4.5*k} ${-9*k}" ${L}/><path d="M${-5*k} ${7.5*k} A${5*k} ${5*k} 0 0 0 ${5*k} ${7.5*k}Z" fill="${ink}"/>`+blush;
     case 'rong': return both(x=>eye(x));
     case 'mrmen': return both(x=>eye(x,3.6*k))+`<path d="M${-5*k} ${9*k} Q0 ${14*k} ${5*k} ${9*k}" ${L}/>`;
     case 'sumikko': return both(x=>`<circle cx="${x}" cy="0" r="${1.6*k}" fill="${ink}"/>`)+`<path d="M${-2*k} ${7*k} L${2*k} ${7*k}" ${L} stroke-width="${1.6*k}"/>`;
     case 'insideout': return both(x=>eye(x,3.4*k))+`<path d="M${-g-5*k} ${-9*k} L${-g+5*k} ${-7*k} M${g+5*k} ${-9*k} L${g-5*k} ${-7*k}" ${L} stroke-width="${3.2*k}"/>`+`<ellipse cx="0" cy="${10*k}" rx="${5*k}" ry="${3.4*k}" fill="${ink}"/>`;
     case 'dark': return both(x=>eye(x,3*k,0,.5*k))+`<path d="M${-g-5*k} ${-9.5*k} L${-g+5*k} ${-6*k} M${g+5*k} ${-9.5*k} L${g-5*k} ${-6*k}" ${L} stroke-width="${3*k}"/>`+`<path d="M${-5*k} ${10*k} L${4*k} ${8*k}" ${L}/>`;
     case 'rush': return both(x=>eye(x,3.4*k))+`<path d="M${-g-5*k} ${-8*k} L${-g+4*k} ${-11*k} M${g+5*k} ${-8*k} L${g-4*k} ${-11*k}" ${L} stroke-width="${3*k}"/><path d="M${-6*k} ${8*k} Q0 ${15*k} ${6*k} ${8*k}Z" fill="${ink}"/>`;
-    case 'sharp': return both(x=>eye(x,2.8*k,0,.4*k))+`<path d="M${-g-5*k} ${-10*k} L${-g+5*k} ${-6*k} M${g+5*k} ${-10*k} L${g-5*k} ${-6*k}" ${L} stroke-width="${3.2*k}"/><path d="M${-4*k} ${9*k} L${4*k} ${7*k}" ${L}/>`;
-    case 'warm': return both(x=>`<path d="M${x-4.4*k} ${2*k} A${4.4*k} ${4.4*k} 0 0 1 ${x+4.4*k} ${2*k}" ${L}/>`)+`<path d="M${-5*k} ${8*k} Q0 ${12*k} ${5*k} ${8*k}" ${L}/>`;
     case 'shaky': return both(x=>eye(x,1.9*k))+`<path d="M${-g-5*k} ${-7*k} L${-g+5*k} ${-10*k} M${g+5*k} ${-7*k} L${g-5*k} ${-10*k}" ${L}/><path d="M${-4*k} ${9*k} L${-2*k} ${8*k} L0 ${9.5*k} L${2*k} ${8*k} L${4*k} ${9*k}" ${L}/>`;
     case 'cool': return both(x=>eye(x,3*k,0,-.4*k)+`<rect x="${x-R-1}" y="${-R-1}" width="${2*R+2}" height="${R*.95}" fill="${body}"/>`)+`<path d="M${-4*k} ${9*k} L${4*k} ${9*k}" ${L}/>`;
-    case 'curious': return eye(-g,3.2*k)+eye(g,3.6*k,.6*k)+`<path d="M${g-5*k} ${-10*k} Q${g} ${-13*k} ${g+5*k} ${-10*k}" ${L}/><circle cx="0" cy="${9.5*k}" r="${2.6*k}" fill="${ink}"/>`;
     case 'steady': return both(x=>eye(x,3*k))+`<path d="M${-g-5*k} ${-9*k} L${-g+5*k} ${-9*k} M${g-5*k} ${-9*k} L${g+5*k} ${-9*k}" ${L}/><path d="M${-4*k} ${9*k} L${4*k} ${9*k}" ${L}/>`;
     case 'calm': return both(x=>eye(x,3*k,0,-.4*k)+`<rect x="${x-R-1}" y="${-R-1}" width="${2*R+2}" height="${R*.9}" fill="${body}"/>`)+`<path d="M${-3*k} ${9*k} Q0 ${11*k} ${3*k} ${9*k}" ${L}/>`;
-    case 'lazy': return both(x=>eye(x,3*k,0,-.6*k)+`<rect x="${x-R-1}" y="${-R-1}" width="${2*R+2}" height="${R}" fill="${body}"/>`)+`<path d="M${-5*k} ${9*k} L${5*k} ${9*k}" ${L}/>`;
-    case 'nervous': return both(x=>eye(x,1.9*k))+`<path d="M${-g-5*k} ${-7*k} L${-g+5*k} ${-10*k} M${g+5*k} ${-7*k} L${g-5*k} ${-10*k}" ${L}/><path d="M${-4*k} ${9*k} L${-2*k} ${8*k} L0 ${9.5*k} L${2*k} ${8*k} L${4*k} ${9*k}" ${L}/>`;
-    case 'bouncy': return both(x=>eye(x,3.4*k))+`<path d="M${-g-5*k} ${-8*k} L${-g+4*k} ${-11*k} M${g+5*k} ${-8*k} L${g-4*k} ${-11*k}" ${L} stroke-width="${3*k}"/><path d="M${-6*k} ${8*k} Q0 ${15*k} ${6*k} ${8*k}Z" fill="${ink}"/>`;
     case 'confused': return both(x=>eye(x,3*k,.4*k))+`<path d="M${-g-5*k} ${-8*k} L${-g+5*k} ${-10*k} M${g-5*k} ${-9*k} Q${g} ${-12*k} ${g+5*k} ${-8*k}" ${L}/>`+`<path d="M${-3*k} ${9*k} Q0 ${7*k} ${3*k} ${9*k}" ${L}/>`;
     case 'scared': return both(x=>eye(x,1.9*k))+`<path d="M${-g-5*k} ${-7*k} L${-g+5*k} ${-10*k} M${g+5*k} ${-7*k} L${g-5*k} ${-10*k}" ${L}/>`+`<path d="M${-4*k} ${9*k} L${-2*k} ${8*k} L0 ${9.5*k} L${2*k} ${8*k} L${4*k} ${9*k}" ${L}/>`;
     case 'bored': return both(x=>eye(x,3*k,0,-.6*k)+`<rect x="${x-R-1}" y="${-R-1}" width="${2*R+2}" height="${R}" fill="${body}"/>`)+`<path d="M${-5*k} ${9*k} L${5*k} ${9*k}" ${L}/>`;
@@ -61,17 +62,17 @@ function blob(key,kind,opt={}){
 /* 六個同學：五大性格（OECD 的五個領域）兩端挑。dims: open 開放、task 任務表現、emo 情緒調節、coop 協作、engage 與人互動；3 高 2 中 1 低 */
 const DIMS=[['open','開放'],['task','任務表現'],['emo','情緒調節'],['coop','協作'],['engage','與人互動']];
 const ROLES=[
- {id:'curious',n:'阿奇',pos:'好奇的',end:'開放・高的那端',like:'看到什麼都「咦？」，愛把這個連到那個',one:'咦，為什麼？',how:'換個角度看題目、把這題連到別的東西',bad:'離題、分心，做到一半跑去看別的',need:'2 有趣、3 卡住時換角度',ref:'OECD 開放（好奇、創意）；吉伊卡哇的小八；Keltner 說的敬畏',face:'一眼大一眼小、嘴圓圓的',sh:'purple',col:'#7F6CDF',
+ {id:'curious',tw:'小四 46% 不喜歡數學；Pekrun：覺得有趣的孩子就算不太會也撐得住；興趣 7 到 18 歲一路降',case:'吉伊卡哇的小八：好奇、會講話，把大家帶進麻煩也帶出來',n:'阿奇',pos:'好奇的',end:'開放・高的那端',like:'看到什麼都「咦？」，愛把這個連到那個',one:'咦，為什麼？',how:'換個角度看題目、把這題連到別的東西',bad:'離題、分心，做到一半跑去看別的',need:'2 有趣、3 卡住時換角度',ref:'OECD 開放（好奇、創意）；吉伊卡哇的小八；Keltner 說的敬畏',face:'一眼大一眼小、嘴圓圓的',sh:'purple',col:'#7F6CDF',
   dims:{open:3,task:1,emo:2,coop:2,engage:2},hi:['好奇','創意'],lo:['自制','堅持']},
- {id:'lazy',n:'麻糬',pos:'懶散的',end:'任務表現・低的那端',like:'能趴就趴、能省力就省力，軟軟黏在椅子上',one:'幹嘛那麼急',how:'找最省力的路、不評價、無聊的時候第一個說出來',bad:'能躺就躺，常常不想做完',need:'5 不被比較、2 有趣（無聊是訊號）',ref:'OECD 任務表現低端（堅持、責任低）；Inside Out 2 的阿廢',face:'半閉眼、嘴一條線',sh:'pink',col:'#FF87C7',
+ {id:'lazy',tw:'國際平均只有 24% 不喜歡數學，台灣 46%；Pekrun：無聊的另一種是「已經會了」；兒盟：孩子最不滿意的是空閒時間',case:'Inside Out 2 的阿廢：躺著滑手機，但關鍵時刻接手',n:'麻糬',pos:'懶散的',end:'任務表現・低的那端',like:'能趴就趴、能省力就省力，軟軟黏在椅子上',one:'幹嘛那麼急',how:'找最省力的路、不評價、無聊的時候第一個說出來',bad:'能躺就躺，常常不想做完',need:'5 不被比較、2 有趣（無聊是訊號）',ref:'OECD 任務表現低端（堅持、責任低）；Inside Out 2 的阿廢',face:'半閉眼、嘴一條線',sh:'pink',col:'#FF87C7',
   dims:{open:2,task:1,emo:3,coop:2,engage:1},hi:['抗壓','樂觀'],lo:['堅持','責任感']},
- {id:'nervous',n:'毛毛',pos:'容易緊張的',end:'情緒調節・低的那端',like:'考試前就毛毛的，怕錯怕考，但怕著也會做',one:'我也好怕⋯⋯',how:'跟你一起怕，然後示範怕著也能做第一步；事前會準備',bad:'常常比你還慌',need:'4 怕的時候、6 有人聽（同病相憐）',ref:'OECD 情緒調節低端（抗壓、情緒控制低）；Inside Out 的憂憂、驚驚；吉伊卡哇本人；角落小夥伴',face:'小瞳孔、抖抖的嘴',sh:'cyan',col:'#03C5E9',
+ {id:'nervous',tw:'15 歲數學焦慮全球第 3；Keltner：焦慮有功能，不是壞事；Pekrun：焦慮直接拉低成績',case:'吉伊卡哇本人、角落小夥伴：膽小的可以當主角，孩子最愛',n:'毛毛',pos:'容易緊張的',end:'情緒調節・低的那端',like:'考試前就毛毛的，怕錯怕考，但怕著也會做',one:'我也好怕⋯⋯',how:'跟你一起怕，然後示範怕著也能做第一步；事前會準備',bad:'常常比你還慌',need:'4 怕的時候、6 有人聽（同病相憐）',ref:'OECD 情緒調節低端（抗壓、情緒控制低）；Inside Out 的憂憂、驚驚；吉伊卡哇本人；角落小夥伴',face:'小瞳孔、抖抖的嘴',sh:'cyan',col:'#03C5E9',
   dims:{open:2,task:3,emo:1,coop:3,engage:1},hi:['責任感','同理'],lo:['抗壓','情緒控制']},
- {id:'warm',n:'暖暖',pos:'體貼的',end:'協作・高的那端',like:'先顧你心情、會聽、不評價',one:'我在',how:'先說「我也錯過」、聽、不評價、拍拍你',bad:'什麼都說沒關係，不敢講重話',need:'5 不被比較、6 有人聽、9 別人怎麼看我',ref:'OECD 協作（同理、信任、合作）；角落小夥伴；Baylor 的激勵者',face:'笑眼、笑嘴',sh:'amber',col:'#F3C11B',
+ {id:'warm',tw:'只有 46.7% 覺得同學友善；近半數心理困擾找 AI 傾訴；13 歲女生只有一成非常喜歡上學',case:'Baylor 的激勵者：像同學、會示範自己的挫折，讓人更有信心',n:'暖暖',pos:'體貼的',end:'協作・高的那端',like:'先顧你心情、會聽、不評價',one:'我在',how:'先說「我也錯過」、聽、不評價、拍拍你',bad:'什麼都說沒關係，不敢講重話',need:'5 不被比較、6 有人聽、9 別人怎麼看我',ref:'OECD 協作（同理、信任、合作）；角落小夥伴；Baylor 的激勵者',face:'笑眼、笑嘴',sh:'amber',col:'#F3C11B',
   dims:{open:2,task:2,emo:2,coop:3,engage:2},hi:['同理','信任'],lo:['主動','堅持己見']},
- {id:'sharp',n:'芥末',pos:'直接到毒舌的',end:'協作・低的那端',like:'開口前先「嘖」一聲，講的話嗆，但是對的',one:'嘖，第二步就錯了',how:'一句話指出哪裡錯、給答案不給安慰',bad:'毒舌、刺到人；國中要收斂',need:'1 做得到、3 卡住時給答案',ref:'OECD 協作低端（同理低、主動高）；Baylor 的專家；想像朋友研究裡「愛指揮」的朋友',face:'壓眉、嘴歪一邊',sh:'green',col:'#00A36E',
+ {id:'sharp',tw:'陳德懷：學生找同學是為了不用面對老師；Baylor：專家型角色讓人學得多',case:'Taylor：孩子造的想像朋友常常愛指揮、不聽話，孩子照樣愛',n:'芥末',pos:'直接到毒舌的',end:'協作・低的那端',like:'開口前先「嘖」一聲，講的話嗆，但是對的',one:'嘖，第二步就錯了',how:'一句話指出哪裡錯、給答案不給安慰',bad:'毒舌、刺到人；國中要收斂',need:'1 做得到、3 卡住時給答案',ref:'OECD 協作低端（同理低、主動高）；Baylor 的專家；想像朋友研究裡「愛指揮」的朋友',face:'壓眉、嘴歪一邊',sh:'green',col:'#00A36E',
   dims:{open:1,task:3,emo:3,coop:1,engage:2},hi:['自制','主動'],lo:['同理','包容']},
- {id:'bouncy',n:'蹦蹦',pos:'活潑的',end:'與人互動・高的那端',like:'帶頭、愛比賽、先做再說',one:'走！再來一次！',how:'帶頭試、比賽、做對了大聲慶祝',bad:'急、吵，會把你拖下水',need:'8 推一把、1 做得到',ref:'OECD 與人互動（活力、主動、社交）；陳德懷的比賽；吉伊卡哇的烏薩奇',face:'挑眉、張嘴笑',sh:'orange',col:'#FF854A',
+ {id:'bouncy',tw:'Baylor：激勵提升自信；陳德懷的比賽模式；但 79.7% 家長已經在推，國中要收斂',case:'吉伊卡哇的烏薩奇：暴衝、最強、帶頭冒險',n:'蹦蹦',pos:'活潑的',end:'與人互動・高的那端',like:'帶頭、愛比賽、先做再說',one:'走！再來一次！',how:'帶頭試、比賽、做對了大聲慶祝',bad:'急、吵，會把你拖下水',need:'8 推一把、1 做得到',ref:'OECD 與人互動（活力、主動、社交）；陳德懷的比賽；吉伊卡哇的烏薩奇',face:'挑眉、張嘴笑',sh:'orange',col:'#FF854A',
   dims:{open:2,task:1,emo:3,coop:2,engage:3},hi:['活力','主動'],lo:['自制','耐心']},
 ];
 const SITUATIONS=[
