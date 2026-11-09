@@ -95,7 +95,7 @@
 <section><div class="wrap">
   <div class="kicker">臉</div>
   <h2>性格畫在臉上</h2>
-  <p class="sub">只有毛毛身上帶別人的顏色：身後一層影子是阿奇的紫。意思是：毛毛不是不好奇，是怕把想問、想試的話壓住了；壓不住的時候，那個紫就出來。心理學講的行為抑制（Kagan）就是這件事：容易緊張的孩子遇到新東西先退一步，不是沒興趣。Pekrun 的資料也顯示焦慮和覺得有趣互相排擠。照 Inside Out 樂樂藍頭髮的做法，一個角色、一個線索。形狀以 Figma「色彩與形狀」那 60 顆幾何形狀為底，再照性格變形：阿奇（#8）歪頭、麻糬（#12）壓扁磨圓、毛毛（#1）縮小、加一層影子、暖暖（#33）磨圓變胖、芥末（#6）留著角、蹦蹦（#28）拉高。顏色從品牌七個輔色挑、調淡一階：名字帶顏色的先定（麻糬粉、芥末綠），其餘照孩子對顏色的情緒聯想（亮暖色＝興奮、黃＝溫暖、藍＝涼涼的，Boyatzis &amp; Varghese 1994；Inside Out 同一套）。</p>
+  <p class="sub">只有毛毛身上多一層：身後一層比本色深一階的藍影子。意思是：毛毛不是不好奇，是怕把想問、想試的話壓住了；壓不住的時候，那層藍就出來。心理學講的行為抑制（Kagan）就是這件事：容易緊張的孩子遇到新東西先退一步，不是沒興趣。Pekrun 的資料也顯示焦慮和覺得有趣互相排擠。照 Inside Out 樂樂藍頭髮的做法，一個角色、一個線索。形狀以 Figma「色彩與形狀」那 60 顆幾何形狀為底，再照性格變形：阿奇（#8）歪頭、麻糬（#12）壓扁磨圓、毛毛（#1）縮小、加一層影子、暖暖（#33）磨圓變胖、芥末（#6）留著角、蹦蹦（#28）拉高。顏色從品牌七個輔色挑、調淡一階：名字帶顏色的先定（麻糬粉、芥末綠），其餘照孩子對顏色的情緒聯想（亮暖色＝興奮、黃＝溫暖、藍＝涼涼的，Boyatzis &amp; Varghese 1994；Inside Out 同一套）。</p>
   <div class="card"><div class="facelegend" id="facelegend"></div></div>
 </div></section>
 
@@ -107,9 +107,11 @@
 </div></section>
 
 <section class="alt" id="另一面"><div class="wrap">
-  <div class="kicker">另一面</div>
-  <h2>第二色出現的時刻</h2>
-  <p class="sub">性格面向表裡低的那條，偶爾會冒出來。那一刻，身上透出相反的那個同學的顏色，然後退回去。滑過去或點一下看。</p>
+  <div class="other-head"><div>
+    <div class="kicker">另一面</div>
+    <h2>第二色出現的時刻</h2>
+    <p class="sub">性格面向表裡低的那條，偶爾會冒出來。那一刻，身上先動一下，接著從裡面透出相反的那個同學的顏色，說完話再退回去。捲到這裡會自動演一輪；滑過去或點一下，單獨再看一次。</p>
+  </div><button class="btn-play" id="playall" type="button">依序播放六個</button></div>
   <div class="other" id="other"></div>
 </div></section>
 
@@ -162,12 +164,13 @@
   <details><summary>依據</summary><ul>
     <li>五大性格與子面向：OECD (2024). Social and Emotional Skills for Better Lives: Findings from the OECD Survey on Social and Emotional Skills 2023（10 歲、15 歲；五大領域：任務表現、情緒調節、協作、開放、與人互動，各三個子技能）。</li>
     <li>缺點是長處的極端版、負面可以當主角：Inside Out 的角色設計；角落小夥伴；Taylor &amp; Mottweiler (2008) 孩子造的想像朋友常常不聽話。</li>
-    <li>毛毛的紫影子：Kagan 的行為抑制（behavioral inhibition，容易緊張的孩子遇到新東西先退一步）；Putwain 等（小學版 Pekrun）焦慮與內在價值負相關。［Kagan 只讀到二手，需補］</li>
+    <li>毛毛的藍影子：Kagan 的行為抑制（behavioral inhibition，容易緊張的孩子遇到新東西先退一步）；Putwain 等（小學版 Pekrun）焦慮與內在價值負相關。［Kagan 只讀到二手，需補］</li>
     <li>角色扮演不同身分：Baylor &amp; Kim (2005) 專家／激勵者／導師；Chan &amp; Baskin (1988) 競爭者、旁觀者、分工者。</li>
     <li>求助行為：Newman (1994)；Karabenick &amp; Newman (2006) Help Seeking in Academic Settings。［只讀到二手，需補］</li>
     <li>每個同學在五條性格上的高低是設計設定，不是測出來的。</li>
   </ul></details>
 </div></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="app.js"></script>
 <script>
 document.getElementById('herocast').innerHTML='<div class="k">六個角色</div><div style="display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end">'+ROLES.map(r=>`<div style="text-align:center">${blob(r.sh,r.id,{box:64,color:r.col})}<div style="font-size:13px;margin-top:4px">${r.n}</div><div style="font-size:12px;color:#6f6c66">${r.pos}</div></div>`).join('')+'</div>';
@@ -188,12 +191,62 @@ function detail(){const d=document.getElementById('detail');const c=ROLES.find(x
   let h=`<div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">${blob(c.sh,c.id,{box:72,color:c.col})}<div style="flex:1;min-width:240px"><h3 style="margin:0">${c.n}　<span class="muted" style="font-weight:400;font-size:14px">${c.pos}，${c.like}</span></h3><p>做法：${c.how}</p><p>缺點：${c.bad}</p><p>負責：${c.need}</p>`;
   if(cell){const s=SITUATIONS[cell[0]];h+=`<p style="margin-top:8px;padding:8px 12px;background:#f5f5f3;border-radius:8px">${s.n}：「${s.r[cell[1]]}」</p>`}
   d.innerHTML=h+'</div></div>';}
+/* 另一面：第二色出現的時刻。每張卡四拍：遇到 → 動了 → 透色 → 退回。GSAP 驅動 SVG，第二色用徑向漸層從身體中心透出，跟身體共用同一條路徑、同一個濾鏡 */
 (function(){
   const byId=Object.fromEntries(ROLES.map(r=>[r.id,r]));
-  const mix=(a,b,t)=>{const p=x=>parseInt(x,16);const A=[1,3,5].map(i=>p(a.slice(i,i+2))),B=[1,3,5].map(i=>p(b.slice(i,i+2)));return '#'+A.map((v,i)=>Math.round(v+(B[i]-v)*t).toString(16).padStart(2,'0')).join('')};
-  const el=document.getElementById('other');
-  el.innerHTML=ROLES.map(c=>{const o=OTHER[c.id],t=byId[o.to];return `<div class="o" data-id="${c.id}"><div class="pic-o">${blob(c.sh,c.id,{box:88,color:c.col})}</div><div><div class="n">${c.n}　<span class="when">${o.when}的時候，透出${t.n}的${t.pos.replace('的','')}</span></div><div class="say">「${o.say}」</div><div class="why">${o.why}</div></div></div>`}).join('');
-  el.querySelectorAll('.o').forEach(d=>{const c=byId[d.dataset.id],t=byId[OTHER[c.id].to];const paint=on=>{d.querySelectorAll('.pic-o path').forEach((p,i,all)=>{if(i===all.length-1)p.setAttribute('fill',on?mix(c.col,t.col,.6):c.col)})};d.addEventListener('mouseenter',()=>paint(true));d.addEventListener('mouseleave',()=>paint(false));d.addEventListener('click',()=>{paint(true);setTimeout(()=>paint(false),1400)})});
+  const el=document.getElementById('other'),btn=document.getElementById('playall');
+  const RM=matchMedia('(prefers-reduced-motion: reduce)').matches,G=typeof gsap!=='undefined'&&!RM;
+  const STEPS=['遇到','動了','透色','退回'];
+  const bloom=(id,t)=>(S,k)=>{const cx=(S.x0||0)+S.w/2,cy=(S.y0||0)+S.h/2;return `<radialGradient id="bl-${id}" gradientUnits="userSpaceOnUse" cx="${cx}" cy="${cy}" r="0"><stop offset=".55" stop-color="${t.col}"/><stop offset="1" stop-color="${t.col}" stop-opacity="0"/></radialGradient><path class="bloom" d="${S.d}" fill="url(#bl-${id})" ${S.filt?`filter="url(#${S.filt})"`:''}/>`};
+  el.innerHTML=ROLES.map(c=>{const o=OTHER[c.id],t=byId[o.to];return `<div class="o" data-id="${c.id}" tabindex="0" role="button" aria-label="播放 ${c.n} 的另一面">
+    <div class="stage"><div class="ghost">${blob(t.sh,t.id,{box:92,color:t.col})}</div><div class="pic-o">${blob(c.sh,c.id,{box:88,color:c.col,extra:bloom(c.id,t)})}</div><div class="chip">${o.when}</div></div>
+    <div><div class="n">${c.n}　<span class="when">${o.when}的時候，透出${t.n}的${t.pos.replace('的','')}</span></div><div class="say">「<span class="txt">${o.say}</span><span class="cur off"></span>」</div><div class="why">${o.why}</div><div class="steps">${STEPS.map(s=>`<span>${s}</span>`).join('')}</div></div></div>`}).join('');
+  /* 身體怎麼動：都是「往相反的那個同學靠一點」。阿奇縮小發抖（像毛毛）、麻糬坐起來（像蹦蹦）、毛毛歪頭往前（像阿奇）、暖暖站直往前一步（像芥末）、芥末放軟靠過去（像暖暖）、蹦蹦趴下壓扁（像麻糬） */
+  const MOVE={
+    curious:(tl,s)=>tl.to(s,{scale:.88,y:5,duration:.25,ease:'power2.out'}).to(s,{x:2,duration:.05,repeat:9,yoyo:true,ease:'none'},'<').to(s,{x:0,duration:.05}),
+    lazy:(tl,s)=>tl.to(s,{scaleY:1.22,scaleX:.94,y:-12,duration:.22,ease:'back.out(2.5)'}).to(s,{y:-8,scaleY:1.12,duration:.25,ease:'bounce.out'}),
+    nervous:(tl,s)=>tl.to(s,{rotation:-12,scale:1.1,x:4,y:-3,duration:.45,ease:'back.out(1.6)'}),
+    warm:(tl,s)=>tl.to(s,{rotation:-6,scaleY:1.06,duration:.2,ease:'power2.out'}).to(s,{x:6,duration:.08,ease:'power3.out'}).to(s,{x:3,duration:.12}),
+    sharp:(tl,s)=>tl.to(s,{rotation:4,scale:1.05,y:2,duration:.6,ease:'sine.inOut'}),
+    bouncy:(tl,s)=>tl.to(s,{scaleY:.78,scaleX:1.12,y:14,rotation:3,duration:.5,ease:'power2.inOut'}),
+  };
+  const ctrls=[...el.querySelectorAll('.o')].map(d=>{
+    const c=byId[d.dataset.id],o=OTHER[c.id],t=byId[o.to],S=SH[c.sh],R=Math.max(S.w,S.h)*.62;
+    const svg=d.querySelector('.pic-o svg'),ghost=d.querySelector('.ghost'),chip=d.querySelector('.chip'),txt=d.querySelector('.txt'),cur=d.querySelector('.cur'),grad=d.querySelector('radialGradient'),steps=[...d.querySelectorAll('.steps span')];
+    const step=i=>()=>steps.forEach((s,j)=>s.classList.toggle('on',j===i));
+    let tl=null,done=null;
+    const finish=()=>{if(done){const f=done;done=null;f()}};
+    if(!G){ /* 沒有 GSAP 或使用者關了動態：只換色 */
+      const on=f=>{grad.setAttribute('r',f?R:0);ghost.style.opacity=f?.35:0;chip.style.opacity=f?1:0;chip.style.transform='none';step(f?2:-1)()};
+      const play=()=>new Promise(res=>{on(true);setTimeout(()=>{on(false);res()},1800)});
+      d.addEventListener('mouseenter',()=>on(true));d.addEventListener('mouseleave',()=>on(false));d.addEventListener('click',play);
+      return {play};
+    }
+    gsap.set(svg,{transformOrigin:'50% 60%'});
+    const breathe=gsap.to(svg,{y:-3,duration:1.6+Math.random()*.6,yoyo:true,repeat:-1,ease:'sine.inOut'});
+    const reset=()=>{if(tl)tl.kill();gsap.set(svg,{clearProps:'transform'});gsap.set(svg,{transformOrigin:'50% 60%'});gsap.set(grad,{attr:{r:0}});gsap.set(ghost,{opacity:0,scale:1});gsap.set(chip,{opacity:0,y:-6,scale:.7});txt.textContent=o.say;cur.classList.add('off');step(-1)();d.classList.remove('playing');finish()};
+    const play=()=>new Promise(res=>{
+      reset();done=res;breathe.pause();d.classList.add('playing');
+      tl=gsap.timeline({onComplete:()=>{d.classList.remove('playing');gsap.set(svg,{clearProps:'transform'});gsap.set(svg,{transformOrigin:'50% 60%'});breathe.restart();step(-1)();finish()}});
+      tl.call(step(0)).to(chip,{opacity:1,y:0,scale:1,duration:.3,ease:'back.out(2)'});
+      tl.call(step(1),null,'+=.15');MOVE[c.id](tl,svg);
+      tl.call(step(2),null,'-=.1').to(grad,{attr:{r:R},duration:.7,ease:'power2.out'},'<').fromTo(ghost,{opacity:0,scale:.9},{opacity:.35,scale:1,duration:.6,ease:'power2.out'},'<');
+      tl.call(()=>{txt.textContent='';cur.classList.remove('off')},null,'-=.45');
+      Array.from(o.say).forEach((ch,i)=>tl.call(()=>{txt.textContent+=ch},null,i?'+=.045':'+=0'));
+      tl.call(()=>cur.classList.add('off'),null,'+=.9');
+      tl.call(step(3)).to(grad,{attr:{r:0},duration:.8,ease:'power2.inOut'}).to(ghost,{opacity:0,duration:.5},'<').to(svg,{x:0,y:0,rotation:0,scale:1,scaleX:1,scaleY:1,duration:.7,ease:'elastic.out(1,.5)'},'<').to(chip,{opacity:0,y:-6,duration:.3},'<.2');
+    });
+    d.addEventListener('mouseenter',()=>{if(!tl||!tl.isActive())play()});
+    d.addEventListener('click',play);
+    d.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();play()}});
+    return {play};
+  });
+  let running=false;
+  async function playAll(){if(running)return;running=true;btn.disabled=true;btn.textContent='播放中…';
+    for(const c of ctrls){await c.play();await new Promise(r=>setTimeout(r,350))}
+    running=false;btn.disabled=false;btn.textContent='再播一次'}
+  btn.addEventListener('click',playAll);
+  if(G&&'IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){io.disconnect();setTimeout(playAll,400)}},{threshold:.35});io.observe(el)}
 })();
 six();dims();facets();legend();table();detail();
 document.getElementById('whysix').innerHTML='<thead><tr><th>同學</th><th>五大性格的位置</th><th>接第一頁的哪條需求</th><th>第一頁的數字或研究</th><th>第二頁誰證明這種角色行得通</th></tr></thead><tbody>'+ROLES.map(c=>`<tr><td style="white-space:nowrap"><b>${c.n}</b><br><span class="muted" style="font-size:12px">${c.pos}</span></td><td style="font-size:13px">${c.end}</td><td style="font-size:13px">${c.need}</td><td style="font-size:13px">${c.tw}</td><td style="font-size:13px">${c.case}</td></tr>`).join('')+'</tbody>';
