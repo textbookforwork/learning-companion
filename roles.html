@@ -95,7 +95,7 @@
 <section><div class="wrap">
   <div class="kicker">臉</div>
   <h2>性格畫在臉上</h2>
-  <p class="sub">形狀照身體語言畫：麻糬扁扁軟軟、毛毛小小毛邊、暖暖圓圓胖胖、阿奇歪頭的蛋、芥末有一個尖角、蹦蹦高高往上的豆子。顏色從品牌七個輔色挑、調淡一階：名字帶顏色的先定（麻糬粉、芥末綠），其餘照孩子對顏色的情緒聯想（亮暖色＝興奮、黃＝溫暖、藍＝涼涼的，Boyatzis &amp; Varghese 1994；Inside Out 同一套）。</p>
+  <p class="sub">只有毛毛身上帶別人的顏色：發抖的影子是阿奇的紫。意思是：毛毛不是不好奇，是怕把想問、想試的話壓住了；壓不住的時候，那個紫就出來。心理學講的行為抑制（Kagan）就是這件事：容易緊張的孩子遇到新東西先退一步，不是沒興趣。Pekrun 的資料也顯示焦慮和覺得有趣互相排擠。照 Inside Out 樂樂藍頭髮的做法，一個角色、一個線索。形狀以 Figma「色彩與形狀」那 60 顆幾何形狀為底，再照性格變形：阿奇（#8）歪頭、麻糬（#12）壓扁磨圓、毛毛（#1）縮小、加一層發抖的影子、暖暖（#33）磨圓變胖、芥末（#6）留著角、蹦蹦（#28）拉高。顏色從品牌七個輔色挑、調淡一階：名字帶顏色的先定（麻糬粉、芥末綠），其餘照孩子對顏色的情緒聯想（亮暖色＝興奮、黃＝溫暖、藍＝涼涼的，Boyatzis &amp; Varghese 1994；Inside Out 同一套）。</p>
   <div class="card"><div class="facelegend" id="facelegend"></div></div>
 </div></section>
 
@@ -104,6 +104,13 @@
   <h2>七種情境，每個同學怎麼接</h2>
   <div class="tscroll"><table class="t mx" id="mx"></table></div>
   <div class="card" id="detail" style="margin-top:16px"></div>
+</div></section>
+
+<section class="alt" id="另一面"><div class="wrap">
+  <div class="kicker">另一面</div>
+  <h2>第二色出現的時刻</h2>
+  <p class="sub">性格面向表裡低的那條，偶爾會冒出來。那一刻，身上透出相反的那個同學的顏色，然後退回去。滑過去或點一下看。</p>
+  <div class="other" id="other"></div>
 </div></section>
 
 <section id="形狀"><div class="wrap">
@@ -155,6 +162,7 @@
   <details><summary>依據</summary><ul>
     <li>五大性格與子面向：OECD (2024). Social and Emotional Skills for Better Lives: Findings from the OECD Survey on Social and Emotional Skills 2023（10 歲、15 歲；五大領域：任務表現、情緒調節、協作、開放、與人互動，各三個子技能）。</li>
     <li>缺點是長處的極端版、負面可以當主角：Inside Out 的角色設計；角落小夥伴；Taylor &amp; Mottweiler (2008) 孩子造的想像朋友常常不聽話。</li>
+    <li>毛毛的紫影子：Kagan 的行為抑制（behavioral inhibition，容易緊張的孩子遇到新東西先退一步）；Putwain 等（小學版 Pekrun）焦慮與內在價值負相關。［Kagan 只讀到二手，需補］</li>
     <li>角色扮演不同身分：Baylor &amp; Kim (2005) 專家／激勵者／導師；Chan &amp; Baskin (1988) 競爭者、旁觀者、分工者。</li>
     <li>求助行為：Newman (1994)；Karabenick &amp; Newman (2006) Help Seeking in Academic Settings。［只讀到二手，需補］</li>
     <li>每個同學在五條性格上的高低是設計設定，不是測出來的。</li>
@@ -180,6 +188,13 @@ function detail(){const d=document.getElementById('detail');const c=ROLES.find(x
   let h=`<div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">${blob(c.sh,c.id,{box:72,color:c.col})}<div style="flex:1;min-width:240px"><h3 style="margin:0">${c.n}　<span class="muted" style="font-weight:400;font-size:14px">${c.pos}，${c.like}</span></h3><p>做法：${c.how}</p><p>缺點：${c.bad}</p><p>負責：${c.need}</p>`;
   if(cell){const s=SITUATIONS[cell[0]];h+=`<p style="margin-top:8px;padding:8px 12px;background:#f5f5f3;border-radius:8px">${s.n}：「${s.r[cell[1]]}」</p>`}
   d.innerHTML=h+'</div></div>';}
+(function(){
+  const byId=Object.fromEntries(ROLES.map(r=>[r.id,r]));
+  const mix=(a,b,t)=>{const p=x=>parseInt(x,16);const A=[1,3,5].map(i=>p(a.slice(i,i+2))),B=[1,3,5].map(i=>p(b.slice(i,i+2)));return '#'+A.map((v,i)=>Math.round(v+(B[i]-v)*t).toString(16).padStart(2,'0')).join('')};
+  const el=document.getElementById('other');
+  el.innerHTML=ROLES.map(c=>{const o=OTHER[c.id],t=byId[o.to];return `<div class="o" data-id="${c.id}"><div class="pic-o">${blob(c.sh,c.id,{box:88,color:c.col})}</div><div><div class="n">${c.n}　<span class="when">${o.when}的時候，透出${t.n}的${t.pos.replace('的','')}</span></div><div class="say">「${o.say}」</div><div class="why">${o.why}</div></div></div>`}).join('');
+  el.querySelectorAll('.o').forEach(d=>{const c=byId[d.dataset.id],t=byId[OTHER[c.id].to];const paint=on=>{d.querySelectorAll('.pic-o path').forEach(p=>{if(!p.classList.contains('tremble-a')&&!p.classList.contains('tremble-b'))p.setAttribute('fill',on?mix(c.col,t.col,.6):c.col)})};d.addEventListener('mouseenter',()=>paint(true));d.addEventListener('mouseleave',()=>paint(false));d.addEventListener('click',()=>{paint(true);setTimeout(()=>paint(false),1400)})});
+})();
 six();dims();facets();legend();table();detail();
 document.getElementById('whysix').innerHTML='<thead><tr><th>同學</th><th>五大性格的位置</th><th>接第一頁的哪條需求</th><th>第一頁的數字或研究</th><th>第二頁誰證明這種角色行得通</th></tr></thead><tbody>'+ROLES.map(c=>`<tr><td style="white-space:nowrap"><b>${c.n}</b><br><span class="muted" style="font-size:12px">${c.pos}</span></td><td style="font-size:13px">${c.end}</td><td style="font-size:13px">${c.need}</td><td style="font-size:13px">${c.tw}</td><td style="font-size:13px">${c.case}</td></tr>`).join('')+'</tbody>';
 (function(){
