@@ -191,15 +191,15 @@ function detail(){const d=document.getElementById('detail');const c=ROLES.find(x
   let h=`<div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">${blob(c.sh,c.id,{box:72,color:c.col})}<div style="flex:1;min-width:240px"><h3 style="margin:0">${c.n}　<span class="muted" style="font-weight:400;font-size:14px">${c.pos}，${c.like}</span></h3><p>做法：${c.how}</p><p>缺點：${c.bad}</p><p>負責：${c.need}</p>`;
   if(cell){const s=SITUATIONS[cell[0]];h+=`<p style="margin-top:8px;padding:8px 12px;background:#f5f5f3;border-radius:8px">${s.n}：「${s.r[cell[1]]}」</p>`}
   d.innerHTML=h+'</div></div>';}
-/* 另一面：第二色出現的時刻。每張卡四拍：遇到 → 動了 → 透色 → 退回。GSAP 驅動 SVG，第二色用徑向漸層從身體中心透出，跟身體共用同一條路徑、同一個濾鏡 */
+/* 另一面：第二色出現的時刻。每張卡四拍：遇到 → 動了 → 透色 → 退回。GSAP 驅動 SVG，第二色用徑向漸層從身體中心透出（跟身體共用同一條路徑、同一個濾鏡），表情換成相反同學的臉，下方浮出名牌；不疊剪影 */
 (function(){
   const byId=Object.fromEntries(ROLES.map(r=>[r.id,r]));
   const el=document.getElementById('other'),btn=document.getElementById('playall');
   const RM=matchMedia('(prefers-reduced-motion: reduce)').matches,G=typeof gsap!=='undefined'&&!RM;
   const STEPS=['遇到','動了','透色','退回'];
-  const bloom=(id,t)=>(S,k)=>{const cx=(S.x0||0)+S.w/2,cy=(S.y0||0)+S.h/2;return `<radialGradient id="bl-${id}" gradientUnits="userSpaceOnUse" cx="${cx}" cy="${cy}" r="0"><stop offset=".55" stop-color="${t.col}"/><stop offset="1" stop-color="${t.col}" stop-opacity="0"/></radialGradient><path class="bloom" d="${S.d}" fill="url(#bl-${id})" ${S.filt?`filter="url(#${S.filt})"`:''}/>`};
+  const bloom=(id,t,c)=>(S,k)=>{const cx=(S.x0||0)+S.w/2,cy=(S.y0||0)+S.h/2,fx=S.fx!==undefined?S.fx:cx,fy=S.fy!==undefined?S.fy:cy,ink=S.dark?'#FFFDF6':'#1A1A1A';return `<radialGradient id="bl-${id}" gradientUnits="userSpaceOnUse" cx="${cx}" cy="${cy}" r="0"><stop offset=".55" stop-color="${t.col}"/><stop offset="1" stop-color="${t.col}" stop-opacity="0"/></radialGradient><path class="bloom" d="${S.d}" fill="url(#bl-${id})" ${S.filt?`filter="url(#${S.filt})"`:''}/><g class="face2" transform="translate(${fx} ${fy})" opacity="0">${face(t.id,k,ink,c.col)}</g>`};
   el.innerHTML=ROLES.map(c=>{const o=OTHER[c.id],t=byId[o.to];return `<div class="o" data-id="${c.id}" tabindex="0" role="button" aria-label="播放 ${c.n} 的另一面">
-    <div class="stage"><div class="ghost">${blob(t.sh,t.id,{box:92,color:t.col})}</div><div class="pic-o">${blob(c.sh,c.id,{box:88,color:c.col,extra:bloom(c.id,t)})}</div><div class="chip">${o.when}</div></div>
+    <div class="stage"><div class="pic-o">${blob(c.sh,c.id,{box:88,color:c.col,extra:bloom(c.id,t,c)})}</div><div class="chip">${o.when}</div><div class="to"><i style="background:${t.col}"></i>${t.n}</div></div>
     <div><div class="n">${c.n}　<span class="when">${o.when}的時候，透出${t.n}的${t.pos.replace('的','')}</span></div><div class="say">「<span class="txt">${o.say}</span><span class="cur off"></span>」</div><div class="why">${o.why}</div><div class="steps">${STEPS.map(s=>`<span>${s}</span>`).join('')}</div></div></div>`}).join('');
   /* 身體怎麼動：都是「往相反的那個同學靠一點」。阿奇縮小發抖（像毛毛）、麻糬坐起來（像蹦蹦）、毛毛歪頭往前（像阿奇）、暖暖站直往前一步（像芥末子）、芥末子放軟靠過去（像暖暖）、蹦蹦趴下壓扁（像麻糬） */
   const MOVE={
@@ -212,29 +212,29 @@ function detail(){const d=document.getElementById('detail');const c=ROLES.find(x
   };
   const ctrls=[...el.querySelectorAll('.o')].map(d=>{
     const c=byId[d.dataset.id],o=OTHER[c.id],t=byId[o.to],S=SH[c.sh],R=Math.max(S.w,S.h)*.62;
-    const svg=d.querySelector('.pic-o svg'),ghost=d.querySelector('.ghost'),chip=d.querySelector('.chip'),txt=d.querySelector('.txt'),cur=d.querySelector('.cur'),grad=d.querySelector('radialGradient'),steps=[...d.querySelectorAll('.steps span')];
+    const svg=d.querySelector('.pic-o svg'),to=d.querySelector('.to'),face1=d.querySelector('.pic-o svg > g > g:last-of-type'),face2=d.querySelector('.face2'),chip=d.querySelector('.chip'),txt=d.querySelector('.txt'),cur=d.querySelector('.cur'),grad=d.querySelector('radialGradient'),steps=[...d.querySelectorAll('.steps span')];
     const step=i=>()=>steps.forEach((s,j)=>s.classList.toggle('on',j===i));
     let tl=null,done=null;
     const finish=()=>{if(done){const f=done;done=null;f()}};
     if(!G){ /* 沒有 GSAP 或使用者關了動態：只換色 */
-      const on=f=>{grad.setAttribute('r',f?R:0);ghost.style.opacity=f?.35:0;chip.style.opacity=f?1:0;chip.style.transform='none';step(f?2:-1)()};
+      const on=f=>{grad.setAttribute('r',f?R:0);face1.setAttribute('opacity',f?0:1);face2.setAttribute('opacity',f?1:0);to.style.opacity=f?1:0;to.style.transform='none';chip.style.opacity=f?1:0;chip.style.transform='none';step(f?2:-1)()};
       const play=()=>new Promise(res=>{on(true);setTimeout(()=>{on(false);res()},1800)});
       d.addEventListener('mouseenter',()=>on(true));d.addEventListener('mouseleave',()=>on(false));d.addEventListener('click',play);
       return {play};
     }
     gsap.set(svg,{transformOrigin:'50% 60%'});
     const breathe=gsap.to(svg,{y:-3,duration:1.6+Math.random()*.6,yoyo:true,repeat:-1,ease:'sine.inOut'});
-    const reset=()=>{if(tl)tl.kill();gsap.set(svg,{clearProps:'transform'});gsap.set(svg,{transformOrigin:'50% 60%'});gsap.set(grad,{attr:{r:0}});gsap.set(ghost,{opacity:0,scale:1});gsap.set(chip,{opacity:0,y:-6,scale:.7});txt.textContent=o.say;cur.classList.add('off');step(-1)();d.classList.remove('playing');finish()};
+    const reset=()=>{if(tl)tl.kill();gsap.set(svg,{clearProps:'transform'});gsap.set(svg,{transformOrigin:'50% 60%'});gsap.set(grad,{attr:{r:0}});gsap.set(face1,{attr:{opacity:1}});gsap.set(face2,{attr:{opacity:0}});gsap.set(to,{opacity:0,y:6});gsap.set(chip,{opacity:0,y:-6,scale:.7});txt.textContent=o.say;cur.classList.add('off');step(-1)();d.classList.remove('playing');finish()};
     const play=()=>new Promise(res=>{
       reset();done=res;breathe.pause();d.classList.add('playing');
       tl=gsap.timeline({onComplete:()=>{d.classList.remove('playing');gsap.set(svg,{clearProps:'transform'});gsap.set(svg,{transformOrigin:'50% 60%'});breathe.restart();step(-1)();finish()}});
       tl.call(step(0)).to(chip,{opacity:1,y:0,scale:1,duration:.3,ease:'back.out(2)'});
       tl.call(step(1),null,'+=.15');MOVE[c.id](tl,svg);
-      tl.call(step(2),null,'-=.1').to(grad,{attr:{r:R},duration:.7,ease:'power2.out'},'<').fromTo(ghost,{opacity:0,scale:.9},{opacity:.35,scale:1,duration:.6,ease:'power2.out'},'<');
+      tl.call(step(2),null,'-=.1').to(grad,{attr:{r:R},duration:.7,ease:'power2.out'},'<').to(face1,{attr:{opacity:0},duration:.3},'<.2').to(face2,{attr:{opacity:1},duration:.3},'<').to(to,{opacity:1,y:0,duration:.35,ease:'back.out(2)'},'<');
       tl.call(()=>{txt.textContent='';cur.classList.remove('off')},null,'-=.45');
       Array.from(o.say).forEach((ch,i)=>tl.call(()=>{txt.textContent+=ch},null,i?'+=.045':'+=0'));
       tl.call(()=>cur.classList.add('off'),null,'+=.9');
-      tl.call(step(3)).to(grad,{attr:{r:0},duration:.8,ease:'power2.inOut'}).to(ghost,{opacity:0,duration:.5},'<').to(svg,{x:0,y:0,rotation:0,scale:1,scaleX:1,scaleY:1,duration:.7,ease:'elastic.out(1,.5)'},'<').to(chip,{opacity:0,y:-6,duration:.3},'<.2');
+      tl.call(step(3)).to(grad,{attr:{r:0},duration:.8,ease:'power2.inOut'}).to(face2,{attr:{opacity:0},duration:.3},'<.3').to(face1,{attr:{opacity:1},duration:.3},'<').to(to,{opacity:0,y:6,duration:.3},'<').to(svg,{x:0,y:0,rotation:0,scale:1,scaleX:1,scaleY:1,duration:.7,ease:'elastic.out(1,.5)'},'<').to(chip,{opacity:0,y:-6,duration:.3},'<.2');
     });
     d.addEventListener('mouseenter',()=>{if(!tl||!tl.isActive())play()});
     d.addEventListener('click',play);
