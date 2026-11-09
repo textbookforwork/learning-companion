@@ -6,20 +6,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-.two.case{grid-template-columns:5fr 7fr}@media (max-width:900px){.two.case{grid-template-columns:1fr}}
 .chain{display:grid;grid-template-columns:1fr 32px 1fr 32px 1fr;gap:var(--s-4);align-items:stretch}
 .chain .arr{display:flex;align-items:center;justify-content:center;color:#bbb;font-size:24px}
 @media (max-width:900px){.chain{grid-template-columns:1fr}.chain .arr{transform:rotate(90deg);height:32px}}
 .chain .card ul{margin:8px 0 0;padding-left:18px}.chain .card li{margin:4px 0}
-.quad{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.quad .q{background:#fff;border-radius:var(--r-md);padding:16px;display:flex;gap:14px;align-items:flex-start;cursor:pointer;border:2px solid transparent}
-.quad .q.on{border-color:var(--ink)}
-.quad .q b{display:block;font-weight:600}
-.quad .q .who{font-size:13px;color:var(--muted)}
-.quad .q .say{font-size:14px;margin-top:4px}
-.axislbl{font-size:13px;color:var(--muted);text-align:center;margin:6px 0}
+.six{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:900px){.six{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.six{grid-template-columns:1fr}}
+.six .p{background:#fff;border-radius:var(--r-md);padding:16px;cursor:pointer;border:2px solid transparent;display:grid;grid-template-columns:72px 1fr;gap:12px}
+.six .p.on{border-color:var(--ink)}
+.six .p b{display:block;font-weight:600;font-size:17px}
+.six .p .end{font-size:12px;color:var(--muted)}
+.six .p .who{font-size:13.5px;margin-top:4px}
+.six .p .say{font-size:14px;margin-top:4px}
+.six .p .bad{font-size:13px;color:#9a3b2e;margin-top:4px}
+.bars{display:grid;grid-template-columns:72px 1fr;gap:6px 10px;align-items:center;font-size:13px}
+.bars .bar{height:10px;border-radius:5px;background:#eee;position:relative}
+.bars .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:5px;background:var(--ink)}
+.bars .bar.lo i{opacity:.35}
+.dimtable td,.dimtable th{text-align:center}
+.dimtable td:first-child,.dimtable th:first-child{text-align:left}
+.lv{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--ink)}
+.lv.m{opacity:.4}.lv.l{opacity:.12}
 .facelegend{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
 .facelegend div{display:flex;gap:10px;align-items:center;font-size:14px}
+.shape-demo{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
 </style>
 </head>
 <body>
@@ -28,10 +39,10 @@
 <section class="hero"><div class="wrap">
   <div class="hero-grid">
     <div>
-      <span class="fact">問題三　對待人的方式有哪幾種</span>
-      <h1>遇到事情，它會拉著我做還是等我；它先顧我心情還是先講事情</h1>
-      <p class="lead">角色要照「它怎麼對待孩子」分。從孩子的角度，一個朋友怎麼對我就兩件事：我卡住的時候，它會動手拉著我做，還是等我自己來？它先顧我的心情，還是先講我哪裡對哪裡錯？四種組合就是班上一定有的四種同學。卡住、怕考、無聊這些狀態是情境，每個角色都接，差別在怎麼接。</p>
-      <div class="btn-row"><a class="btn" href="#推論">推論怎麼來</a><a class="btn sec" href="#矩陣">反應矩陣</a></div>
+      <span class="fact">問題二、三　性格怎麼選，怎麼跟學習形狀接</span>
+      <h1>班上的六個同學，同一件事六種面對方式</h1>
+      <p class="lead">角色每個都能當朋友、小老師、對手，差別在性格。孩子跟他們相處，認識不同的人是怎樣的，也從他們怎麼面對事情學。性格從孩子這個年紀真的會長出來的那五種挑，而且好的那端和壞的那端都要有，不然又是一群乖孩子。</p>
+      <div class="btn-row"><a class="btn" href="#推論">推論怎麼來</a><a class="btn sec" href="#面向">性格面向</a></div>
     </div>
     <div class="card" id="herocast"></div>
   </div>
@@ -39,64 +50,85 @@
 
 <section id="推論"><div class="wrap">
   <div class="kicker">推論</div>
-  <h2>從孩子需要什麼，到四個角色</h2>
+  <h2>從孩子需要什麼，到六個角色</h2>
   <div class="chain">
-    <div class="card"><div class="k">第一頁的結論</div><h3>孩子需要四件事</h3><ul><li>做得到</li><li>有趣</li><li>不被比較</li><li>有人聽</li></ul><p style="margin-top:12px">加上兩種一定會出現的狀態：怕、無聊。</p></div>
+    <div class="card"><div class="k">第一頁的結論</div><h3>孩子需要四件事</h3><ul><li>做得到</li><li>有趣</li><li>不被比較</li><li>有人聽</li></ul><p style="margin-top:12px">這些是每個角色都要做的事，不是角色本身。</p></div>
     <div class="arr">→</div>
-    <div class="card"><div class="k">第二頁的結論</div><h3>角色要守四條規則</h3><ul><li>少，每個都說得出為什麼</li><li>同一件事，反應不同</li><li>要有缺點</li><li>可以參考：兩兩相反</li></ul></div>
+    <div class="card"><div class="k">第二頁的結論</div><h3>角色要守的規則</h3><ul><li>少，每個都說得出為什麼</li><li>同一件事，反應不同</li><li>要有缺點，要有負面的</li><li>可以參考：兩兩相反</li></ul></div>
     <div class="arr">→</div>
-    <div class="card"><div class="k">所以</div><h3>照「它怎麼對我」切</h3><p>需求是角色要做的事，不是角色本身。性格要能讓角色對同一件事反應不同。從孩子的角度，朋友怎麼對我只有兩件事：拉著我做還是等我、顧我心情還是講事情。四種組合，每種負責幾條需求。</p></div>
+    <div class="card"><div class="k">所以</div><h3>從五大性格的兩端挑</h3><p>孩子要從角色身上學，性格就要選孩子真的會長出來的。研究上最有份量的是五大性格，OECD 用它測過十歲和十五歲的孩子。每一條性格都有兩端，只挑好的那端會變成一群乖孩子，所以兩端都挑：三個偏好、三個偏壞，每個都有缺點。</p></div>
   </div>
 </div></section>
 
-<section class="alt" id="四種"><div class="wrap">
-  <div class="kicker">兩個問題</div>
-  <h2>拉著我做還是等我，顧我心情還是講事情</h2>
-  <p class="sub">這兩件事不是我想的。心理學描述「一個人怎麼對別人」最老的一張圖就是這兩軸，學術上叫主導還是順從、親和還是冷淡（Leary 1957；Wiggins 1979）。翻成孩子的話：它會不會拉著我做、它顧不顧我的心情。研究裡測過的陪伴角色也都落在這四格：Baylor 的導師是拉著做又顧心情、專家是拉著做只講事情、激勵者是等你又顧心情；陳德懷的「一個做一個看」是等你、只講事情。</p>
-  <div class="two case">
-    <div>
-      <div class="axislbl">會拉著我做</div>
-      <div class="quad" id="quad"></div>
-      <div class="axislbl">等我自己來</div>
-      <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--muted);padding:0 8px"><span>← 只講事情</span><span>先顧我心情 →</span></div>
-    </div>
-    <div>
-      <div class="tscroll"><table class="t" id="why"></table></div>
-    </div>
+<section class="alt" id="六個"><div class="wrap">
+  <div class="kicker">六個角色</div>
+  <h2>班上的六個同學</h2>
+  <div class="six" id="six"></div>
+</div></section>
+
+<section id="面向"><div class="wrap">
+  <div class="kicker">性格面向</div>
+  <h2>每個同學在五條性格上的高低</h2>
+  <p class="sub">五條性格照 OECD 的分法：開放（好奇、包容、創意）、任務表現（責任感、自制、堅持）、情緒調節（抗壓、樂觀、情緒控制）、協作（同理、信任、合作）、與人互動（社交、主動、活力）。一個同學不是只有一條性格，是五條各有高低，主要的那條決定他的名字。</p>
+  <div class="tscroll"><table class="t dimtable" id="dims"></table></div>
+  <div class="grid g3" style="margin-top:16px" id="facets"></div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+  <div class="kicker">身分</div>
+  <h2>身分跟著情境換，性格不換</h2>
+  <div class="grid g3">
+    <div class="card"><h3>朋友</h3><p>下課、書櫃、沒事的時候。陪你講話、陪你趴著。</p></div>
+    <div class="card"><h3>小老師</h3><p>卡住、答錯的時候。用自己的方式教：芥末直接講哪裡錯，阿奇換個角度，毛毛陪你一起從第一行看。</p></div>
+    <div class="card"><h3>對手或隊友</h3><p>比賽、派任務的時候。蹦蹦帶頭衝，麻糬找最省力的路，暖暖幫落後的人。</p></div>
   </div>
+  <p class="sub" style="margin-top:24px">孩子看六個人面對同一件事的六種方式，就在學人可以怎麼過難關。這也是國教院新院長點名的方向：社會情緒學習。</p>
 </div></section>
 
 <section><div class="wrap">
   <div class="kicker">臉</div>
-  <h2>兩件事畫在臉上</h2>
-  <p class="sub">會拉著我做的有眉毛，等我的沒有。顧我心情的嘴在笑，只講事情的嘴是一條線。孩子看臉就分得出四種。名字和顏色是示例。</p>
+  <h2>性格畫在臉上</h2>
+  <p class="sub">形狀用品牌鵝卵石的輪廓，顏色是示例。</p>
   <div class="card"><div class="facelegend" id="facelegend"></div></div>
 </div></section>
 
 <section class="alt" id="矩陣"><div class="wrap">
   <div class="kicker">反應矩陣</div>
-  <h2>七種情境，每個角色怎麼接</h2>
+  <h2>七種情境，每個同學怎麼接</h2>
   <div class="tscroll"><table class="t mx" id="mx"></table></div>
   <div class="card" id="detail" style="margin-top:16px"></div>
 </div></section>
 
-<section><div class="wrap">
-  <div class="kicker">年段與機制</div>
-  <h2>年段怎麼調整</h2>
-  <div class="grid g3">
-    <div class="card"><h3>低年級</h3><p>四個都可以。這個年段角色的功能是好玩、我的、我決定，不是輔導。</p></div>
-    <div class="card"><h3>高年級到國中</h3><p>暖暖最重要：焦慮、不被比較。刺刺和衝衝的台詞變軟，台灣國中生已經被推夠多。不另外加角色。</p></div>
-    <div class="card"><h3>機制</h3><p>孩子選今天誰陪、可以叫它走、它不會餓也不會死。上課時躲起來，有事才出現。不計分、不餵食。</p></div>
+<section id="形狀"><div class="wrap">
+  <div class="kicker">問題三</div>
+  <h2>跟學習的形狀怎麼接：這堂課找了誰陪，形狀就染誰的顏色</h2>
+  <div class="two">
+    <div>
+      <p class="lead">學習的形狀一個孩子一顆，上課時安靜吸收，下課長成今天的樣子。規則只有一條：碰到什麼吸收什麼。這堂課你卡住時找了芥末，形狀染芥末的綠；怕考時找了毛毛，染毛毛的藍。一學期下來，看得出你靠什麼撐過難的時候。</p>
+      <p>研究上這叫求助行為。會適當求助的孩子學得比較好，找什麼樣的幫助是一種學習習慣，不是成績。所以形狀記錄的是「你怎麼學」，比記錄讀了幾頁深。</p>
+      <p>防止變成收集：角色只在卡住、答錯、怕考這些時刻冒出來，平常躲著，不能一直點。</p>
+    </div>
+    <div class="card"><div class="k">示意</div><div class="shape-demo" id="shapedemo"></div><p class="muted" style="font-size:13px;margin-top:12px">開學是灰色正圓；這堂課找了芥末兩次、暖暖一次，下課變成這樣。</p></div>
   </div>
 </div></section>
 
 <section class="alt"><div class="wrap">
-  <div class="kicker">不採用的版本</div>
-  <h2>三個不採用的版本，和為什麼</h2>
+  <div class="kicker">年段與機制</div>
+  <h2>年段怎麼調整</h2>
   <div class="grid g3">
-    <div class="card"><div class="k">11-04　照學習狀態切，七個</div><div style="display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px" id="v1"></div><p>困惑、害怕、無聊、難過、開心各一個角色。問題：角色變成「孩子的情緒」，不是陪他的人；而且狀態是情境，不該是角色。</p></div>
-    <div class="card"><div class="k">11-05　性格切，六個</div><div style="display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px" id="v2"></div><p>四個從兩軸來，另外兩個（怕、好奇）是我加的，軸上推不出來，也跟「狀態是情境」矛盾。拿掉。</p></div>
-    <div class="card"><div class="k">Rong 原型，八個</div><div style="display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px" id="rong"></div><p>溫暖、好奇、傾聽、擁抱、從容、成長、行動、創意。三個重疊在歸屬、兩個在有趣；沒有一個接卡住、害怕。全是正向，差異只靠口頭禪。</p></div>
+    <div class="card"><h3>低年級</h3><p>六個都可以。這個年段角色的功能是好玩、我的、我決定。</p></div>
+    <div class="card"><h3>高年級到國中</h3><p>毛毛和暖暖最重要：焦慮、不被比較。芥末和蹦蹦的台詞變軟，台灣國中生已經被推夠多。</p></div>
+    <div class="card"><h3>機制</h3><p>孩子選今天誰陪、可以叫它走、它不會餓也不會死。上課時躲起來，有事才出現。不計分、不餵食。</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="kicker">不採用的版本</div>
+  <h2>走過的三個版本</h2>
+  <div class="grid g3">
+    <div class="card"><div class="k">11-04　照學習狀態切，七個</div><div style="display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px" id="v1"></div><p>困惑、害怕、無聊各一個角色。角色變成「孩子的情緒」，不是陪他的人；狀態是情境，不該是角色。</p></div>
+    <div class="card"><div class="k">11-05、06　照「它怎麼對待你」切，六個、四個</div><div style="display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px" id="v2"></div><p>用主導／親和兩軸配。分得開，但孩子從中學不到什麼，也接不上「有時是朋友有時是小老師」。</p></div>
+    <div class="card"><div class="k">Rong 原型，八個</div><div style="display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px" id="rong"></div><p>溫暖、好奇、傾聽、擁抱、從容、成長、行動、創意。全是正向，三個重疊在歸屬；沒有一個接卡住、害怕。</p></div>
   </div>
 </div></section>
 
@@ -104,10 +136,9 @@
   <div class="kicker">決定</div>
   <h2>要決定的事</h2>
   <ol class="decide">
-    <li><div><b>照「它怎麼對我」切，可以嗎</b>　拉著我還是等我、顧心情還是講事情，四種同學。<div class="my">我的判斷：可以。孩子認得這四種同學，研究裡測過的角色也都落在這四格。</div></div></li>
-    <li><div><b>四個夠不夠，要不要第五個</b>　第五個要說得出它從哪裡來。<div class="my">我的判斷：先四個拿去問孩子，認得出再談加。</div></div></li>
-    <li><div><b>刺刺（毒舌）留不留</b>　研究說孩子要有脾氣的朋友，但國中段要收斂。<div class="my">我的判斷：留，國中台詞變軟。</div></div></li>
-    <li><div><b>名字和口頭禪</b>　現在都是示例，沒測過孩子。<div class="my">我的判斷：先定一版，入校時用五分鐘教案流程讓全班投票。</div></div></li>
+    <li><div><b>六個性格對不對</b>　好奇、懶散、容易緊張、體貼、毒舌、活潑，從五大性格兩端挑。<div class="my">我的判斷：對。有研究、有台灣可比的數據，三好三壞，孩子認得這六種同學。</div></div></li>
+    <li><div><b>名字</b>　阿奇、麻糬、毛毛、暖暖、芥末、蹦蹦。<div class="my">我的判斷：先用這版拿去給孩子看，認不出的再改。</div></div></li>
+    <li><div><b>形狀染色</b>　這堂課找誰陪，形狀染誰的顏色，要不要進 demo。<div class="my">我的判斷：進。規則一條、一堂課看得到、不用老師設定。</div></div></li>
   </ol>
 </div></section>
 
@@ -115,32 +146,40 @@
 <footer class="closing"><div class="wrap">
   <div>美感與數位教科書研究計畫　V1 陪伴角色研究　2026-11　整理：馨儀</div>
   <details><summary>依據</summary><ul>
-    <li>兩軸：Leary (1957) Interpersonal Diagnosis of Personality；Wiggins (1979) A psychological taxonomy of trait-descriptive terms: The interpersonal domain. Journal of Personality and Social Psychology 37(3), 395–412.</li>
-    <li>四格裡的研究角色：Baylor &amp; Kim (2005) 專家／激勵者／導師；Chan &amp; Baskin (1988) 競爭者、旁觀者、分工者。</li>
-    <li>缺點的依據：Taylor &amp; Mottweiler (2008) 孩子造的想像朋友常常不聽話、愛指揮；角落小夥伴的角色設定。</li>
-    <li>形狀輪廓取自師生同步網站的鵝卵石路徑；名字、台詞、顏色都是示例。</li>
+    <li>五大性格與子面向：OECD (2024). Social and Emotional Skills for Better Lives: Findings from the OECD Survey on Social and Emotional Skills 2023（10 歲、15 歲；五大領域：任務表現、情緒調節、協作、開放、與人互動，各三個子技能）。</li>
+    <li>缺點是長處的極端版、負面可以當主角：Inside Out 的角色設計；角落小夥伴；Taylor &amp; Mottweiler (2008) 孩子造的想像朋友常常不聽話。</li>
+    <li>角色扮演不同身分：Baylor &amp; Kim (2005) 專家／激勵者／導師；Chan &amp; Baskin (1988) 競爭者、旁觀者、分工者。</li>
+    <li>求助行為：Newman (1994)；Karabenick &amp; Newman (2006) Help Seeking in Academic Settings。［只讀到二手，需補］</li>
+    <li>每個同學在五條性格上的高低是設計設定，不是測出來的。</li>
   </ul></details>
 </div></footer>
 <script src="app.js"></script>
 <script>
-document.getElementById('herocast').innerHTML='<div class="k">四個角色</div><div style="display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end">'+ROLES.map(r=>`<div style="text-align:center">${blob(r.sh,r.id,{box:72,color:r.col})}<div style="font-size:13px;margin-top:4px">${r.n}</div><div style="font-size:12px;color:#6f6c66">${r.pos}</div></div>`).join('')+'</div>';
-let sel='rush',cell=null;
-const ORDER=['sharp','rush','cool','warm']; // 左上 帶頭冷、右上 帶頭熱、左下 跟著冷、右下 跟著熱
-function quad(){document.getElementById('quad').innerHTML=ORDER.map(id=>{const c=ROLES.find(r=>r.id===id);return `<div class="q${sel===id?' on':''}" onclick="pick('${id}')">${blob(c.sh,c.id,{box:56,color:c.col})}<div><b>${c.n}　<span style="font-weight:400;font-size:13px;color:#6f6c66">${c.pos}</span></b><div class="who">${c.like}</div><div class="say">「${c.one}」</div></div></div>`}).join('')}
-function why(){document.getElementById('why').innerHTML='<thead><tr><th>角色</th><th>它負責的需求</th><th>研究裡的對應</th><th>缺點</th></tr></thead><tbody>'+ROLES.map(c=>`<tr class="${sel===c.id?'hl':''}" style="cursor:pointer" onclick="pick('${c.id}')"><td><b>${c.n}</b><br><span class="muted" style="font-size:12px">${c.pos}</span></td><td>${c.need}</td><td style="font-size:13px">${c.ref}</td><td style="font-size:13px;color:#9a3b2e">${c.bad}</td></tr>`).join('')+'</tbody>'}
+document.getElementById('herocast').innerHTML='<div class="k">六個角色</div><div style="display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end">'+ROLES.map(r=>`<div style="text-align:center">${blob(r.sh,r.id,{box:64,color:r.col})}<div style="font-size:13px;margin-top:4px">${r.n}</div><div style="font-size:12px;color:#6f6c66">${r.pos}</div></div>`).join('')+'</div>';
+let sel='curious',cell=null;
+function six(){document.getElementById('six').innerHTML=ROLES.map(c=>`<div class="p${sel===c.id?' on':''}" onclick="pick('${c.id}')">${blob(c.sh,c.id,{box:64,color:c.col})}<div><b>${c.n}　<span style="font-weight:400;font-size:14px;color:#6f6c66">${c.pos}</span></b><div class="end">${c.end}</div><div class="who">${c.like}</div><div class="say">「${c.one}」</div><div class="bad">缺點：${c.bad}</div></div></div>`).join('')}
+const LV=v=>`<span class="lv ${v===3?'':v===2?'m':'l'}"></span>`;
+function dims(){document.getElementById('dims').innerHTML='<thead><tr><th>同學</th>'+DIMS.map(d=>`<th>${d[1]}</th>`).join('')+'<th style="text-align:left">主要的那條</th></tr></thead><tbody>'+ROLES.map(c=>`<tr class="${sel===c.id?'hl':''}" style="cursor:pointer" onclick="pick('${c.id}')"><td><b>${c.n}</b>　<span class="muted" style="font-size:12px">${c.pos}</span></td>${DIMS.map(d=>`<td>${LV(c.dims[d[0]])}</td>`).join('')}<td style="text-align:left;font-size:13px">${c.end}</td></tr>`).join('')+'</tbody><tfoot><tr><td colspan="7" class="muted" style="font-size:12px">● 高　◐ 中　○ 低。高低是設計設定，不是測出來的。</td></tr></tfoot>'}
+function facets(){document.getElementById('facets').innerHTML=ROLES.map(c=>`<div class="card" style="cursor:pointer;border:2px solid ${sel===c.id?'#1b1a17':'transparent'}" onclick="pick('${c.id}')"><div style="display:flex;gap:10px;align-items:center;margin-bottom:8px">${blob(c.sh,c.id,{box:40,color:c.col})}<b>${c.n}</b><span class="muted" style="font-size:13px">${c.end}</span></div><div class="bars">${DIMS.map(d=>`<span>${d[1]}</span><div class="bar ${c.dims[d[0]]===1?'lo':''}"><i style="width:${c.dims[d[0]]*33.3}%"></i></div>`).join('')}</div><p style="font-size:13px;margin-top:10px"><b>高</b>　${c.hi.join('、')}　<b>低</b>　${c.lo.join('、')}</p><p style="font-size:13px"><b>負責</b>　${c.need}</p><p class="muted" style="font-size:12.5px">${c.ref}</p></div>`).join('')}
 function legend(){document.getElementById('facelegend').innerHTML=ROLES.map(c=>`<div>${blob(c.sh,c.id,{box:56,color:c.col})}<span><b>${c.n}</b><br><span class="muted" style="font-size:13px">${c.face}</span></span></div>`).join('')}
 function table(){
   let h='<thead><tr><th class="first">情境</th>'+ROLES.map(c=>`<th>${blob(c.sh,c.id,{box:36,color:c.col})}${c.n}</th>`).join('')+'</tr></thead><tbody>';
   SITUATIONS.forEach((s,i)=>{h+=`<tr><td class="first"><b>${s.n}</b><br><span class="muted" style="font-size:12px">${s.s}</span></td>`+ROLES.map((c,j)=>`<td class="${sel===c.id?'hl':''}" style="cursor:pointer" onclick="pickCell(${i},${j})">${s.r[j]}</td>`).join('')+'</tr>'});
   document.getElementById('mx').innerHTML=h+'</tbody>';
 }
-function pick(id){sel=id;cell=null;quad();why();table();detail();}
-function pickCell(i,j){sel=ROLES[j].id;cell=[i,j];quad();why();table();detail();}
+function pick(id){sel=id;cell=null;six();dims();facets();table();detail();}
+function pickCell(i,j){sel=ROLES[j].id;cell=[i,j];six();dims();facets();table();detail();}
 function detail(){const d=document.getElementById('detail');const c=ROLES.find(x=>x.id===sel);
   let h=`<div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">${blob(c.sh,c.id,{box:72,color:c.col})}<div style="flex:1;min-width:240px"><h3 style="margin:0">${c.n}　<span class="muted" style="font-weight:400;font-size:14px">${c.pos}，${c.like}</span></h3><p>做法：${c.how}</p><p>缺點：${c.bad}</p><p>負責：${c.need}</p>`;
   if(cell){const s=SITUATIONS[cell[0]];h+=`<p style="margin-top:8px;padding:8px 12px;background:#f5f5f3;border-radius:8px">${s.n}：「${s.r[cell[1]]}」</p>`}
   d.innerHTML=h+'</div></div>';}
-quad();why();legend();table();detail();
+six();dims();facets();legend();table();detail();
+(function(){
+  const grey='<svg width="96" height="96" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="#cfcfcb"/></svg>';
+  const S=SH.cyan;
+  const colored=`<svg width="110" height="110" viewBox="0 0 ${S.w} ${S.h}"><defs><linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00A36E"/><stop offset=".65" stop-color="#00A36E"/><stop offset="1" stop-color="#F3C11B"/></linearGradient></defs><path d="${S.d}" fill="url(#gg)"/></svg>`;
+  document.getElementById('shapedemo').innerHTML=`<div style="text-align:center">${grey}<div style="font-size:12px;color:#6f6c66">開學</div></div><div style="font-size:24px;color:#bbb">→</div><div style="text-align:center">${colored}<div style="font-size:12px;color:#6f6c66">下課</div></div>`;
+})();
 const V1=[['卡卡','purple','confused','#7A60DE'],['怕怕','cyan','scared','#00BEE6'],['悶悶','amber','bored','#F8B800'],['嗚嗚','pink','sad','#FF78C2'],['耶耶','orange','happy','#FF7738'],['比比','green','envy','#009A5E'],['噓噓','brown','embarrassed','#8D5A32']];
 document.getElementById('v1').innerHTML=V1.map(r=>`<div style="text-align:center">${blob(r[1],r[2],{box:44,color:r[3]})}<div style="font-size:12px">${r[0]}</div></div>`).join('');
 const V2=[['衝衝','orange','rush','#FF854A'],['刺刺','purple','sharp','#7F6CDF'],['暖暖','amber','warm','#F3C11B'],['抖抖','cyan','shaky','#03C5E9'],['淡淡','green','cool','#00A36E'],['欸欸','pink','curious','#FF87C7']];

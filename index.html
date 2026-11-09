@@ -41,7 +41,7 @@
   <div class="grid g3" style="margin-bottom:48px">
     <div class="card"><div class="k">問題一</div><h3>孩子在學習裡需要什麼陪伴</h3><p>答案是四件事：被相信做得到、被帶著覺得有趣、不被比較、被聽。這四件事講的都是「孩子想被怎麼對待」。</p></div>
     <div class="card"><div class="k">所以問題二</div><h3>性格要照什麼分，才接得住這四件事</h3><p>性格就是一個人固定的「對待別人的方式」。所以角色要照「它怎麼對待孩子」來分，不是照可愛的特質分。別人的作品告訴我們怎麼分才認得出：同一件事反應不同、要有缺點；兩兩相反可以參考。</p></div>
-    <div class="card"><div class="k">所以問題三</div><h3>對待孩子的方式有哪幾種</h3><p>從孩子的角度只有兩件事：我卡住時它會拉著我做還是等我自己來；它先顧我心情還是先講事情。四種組合各接幾條需求。角色有幾個，是推出來的結果，不是目標。</p></div>
+    <div class="card"><div class="k">所以問題三</div><h3>性格要從哪裡挑</h3><p>孩子要從角色身上學，性格就要選孩子真的會長出來的那幾種：五大性格，OECD 測過十歲和十五歲的孩子。每條性格都有兩端，好的壞的都要挑，不然又是一群乖孩子。</p></div>
   </div>
   <div class="entry">
     <a class="card" href="needs.html">
@@ -61,9 +61,9 @@
     <a class="card" href="roles.html">
       <div class="no">三</div>
       <h3>我們的角色</h3>
-      <p class="ans">從孩子的角度，朋友怎麼對我只有兩件事：會拉著我做還是等我、顧我心情還是講事情。四種組合就是四種同學：衝衝、刺刺、暖暖、淡淡。卡住、怕考、無聊每個角色都接，差別在怎麼接。</p>
+      <p class="ans">班上的六個同學：好奇的阿奇、懶散的麻糬、容易緊張的毛毛、體貼的暖暖、毒舌的芥末、活潑的蹦蹦。從五大性格的兩端挑，三好三壞，每個有缺點。卡住、怕考、無聊每個都接，差別在怎麼接。</p>
       <div class="vis" id="six"></div>
-      <span class="go">推論、四個角色、反應矩陣、要決定的事</span>
+      <span class="go">推論、六個同學、性格面向、反應矩陣、跟學習形狀怎麼接</span>
     </a>
   </div>
 </div></section>
@@ -72,15 +72,14 @@
   <div class="two">
     <div>
       <div class="kicker">還沒定的</div>
-      <h2>四件事等拍板</h2>
+      <h2>等拍板的</h2>
       <ol class="decide">
-        <li><div><b>照性格切這條路可以嗎</b></div></li>
-        <li><div><b>四個夠不夠，要不要第五個</b></div></li>
-        <li><div><b>毒舌的刺刺留不留</b></div></li>
-        <li><div><b>名字和口頭禪要不要先定一版去問孩子</b></div></li>
+        <li><div><b>六個性格對不對</b></div></li>
+        <li><div><b>名字：阿奇、麻糬、毛毛、暖暖、芥末、蹦蹦</b></div></li>
+        <li><div><b>形狀染色要不要進 demo</b></div></li>
       </ol>
     </div>
-    <div class="card"><div class="k">我的判斷</div><p>可以；四個先拿去問孩子，認得出再談加；刺刺留，國中台詞變軟；先定一版，入校時用五分鐘教案流程讓全班投票。</p><p style="margin-top:16px"><a class="btn" href="roles.html#拍板">看理由</a></p></div>
+    <div class="card"><div class="k">我的判斷</div><p>六個對，三好三壞孩子認得；名字先用這版拿去給孩子看；形狀染色進 demo，規則一條、一堂課看得到。</p><p style="margin-top:16px"><a class="btn" href="roles.html#拍板">看理由</a></p></div>
   </div>
 </div></section>
 
@@ -90,7 +89,7 @@
 </div></footer>
 <script src="app.js"></script>
 <script>
-document.getElementById('cast').innerHTML='<div class="k">四個角色</div><div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end">'+ROLES.map(r=>`<div style="text-align:center">${blob(r.sh,r.id,{box:64,color:r.col})}<div style="font-size:13px;margin-top:4px">${r.n}</div></div>`).join('')+'</div>';
+document.getElementById('cast').innerHTML='<div class="k">六個同學</div><div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end">'+ROLES.map(r=>`<div style="text-align:center">${blob(r.sh,r.id,{box:64,color:r.col})}<div style="font-size:13px;margin-top:4px">${r.n}</div></div>`).join('')+'</div>';
 document.getElementById('six').innerHTML=ROLES.map(r=>blob(r.sh,r.id,{box:52,color:r.col})).join('');
 </script>
 </body>
