@@ -65,7 +65,7 @@ function blob(key,kind,opt={}){
   const cx=x0+S.w/2,cy=y0+S.h/2,fx=S.fx!==undefined?S.fx:cx,fy=S.fy!==undefined?S.fy:cy;
   const tf=S.tf?`transform="translate(${cx} ${cy}) ${S.tf} translate(${-cx} ${-cy})"`:'';
   const extra=opt.extra?opt.extra(S,k):'';
-  const shadow=S.shadow?`<path class="tremble-a" d="${S.d}" fill="${S.shadow}" opacity=".55"/><path class="tremble-b" d="${S.d}" fill="${S.shadow}" opacity=".55"/>`:'';
+  const shadow=S.shadow?`<path d="${S.d}" fill="${S.shadow}" opacity=".6" transform="translate(5 4)"/>`:'';
   return `<svg width="${W*sc}" height="${H*sc}" viewBox="${x0-pad} ${y0-pad} ${W} ${H}" overflow="visible" aria-hidden="true"><g ${tf}>${shadow}<path d="${S.d}" fill="${col}" ${S.filt?`filter="url(#${S.filt})"`:''} ${opt.sat!==undefined?`opacity="${opt.sat}"`:''}/>${extra}<g transform="translate(${fx} ${fy})">${face(kind,k,ink,col)}</g></g></svg>`;
 }
 /* 濾鏡（磨圓、加毛）掛在 body 開頭 */
@@ -77,7 +77,7 @@ const ROLES=[
   dims:{open:3,task:1,emo:2,coop:2,engage:2},hi:['好奇','創意'],lo:['自制','堅持']},
  {id:'lazy',tw:'國際平均只有 24% 不喜歡數學，台灣 46%；Pekrun：無聊的另一種是「已經會了」；兒盟：孩子最不滿意的是空閒時間',case:'Inside Out 2 的阿廢：躺著滑手機，但關鍵時刻接手',n:'麻糬',pos:'懶散的',end:'任務表現・低的那端',like:'能趴就趴、能省力就省力，軟軟黏在椅子上',one:'幹嘛那麼急',how:'找最省力的路、不評價、無聊的時候第一個說出來',bad:'能躺就躺，常常不想做完',need:'5 不被比較、2 有趣（無聊是訊號）',ref:'OECD 任務表現低端（堅持、責任低）；Inside Out 2 的阿廢',face:'半閉眼、嘴一條線',sh:'p12',col:'#FFA5D5',
   dims:{open:2,task:1,emo:3,coop:2,engage:1},hi:['抗壓','樂觀'],lo:['堅持','責任感']},
- {id:'nervous',tw:'15 歲數學焦慮全球第 3；Keltner：焦慮有功能，不是壞事；Pekrun：焦慮直接拉低成績',case:'吉伊卡哇本人、角落小夥伴：膽小的可以當主角，孩子最愛',n:'毛毛',pos:'容易緊張的',end:'情緒調節・低的那端',like:'考試前就毛毛的，怕錯怕考，但怕著也會做',one:'我也好怕⋯⋯',how:'跟你一起怕，然後示範怕著也能做第一步；事前會準備',bad:'常常比你還慌',need:'4 怕的時候、6 有人聽（同病相憐）',ref:'OECD 情緒調節低端（抗壓、情緒控制低）；Inside Out 的憂憂、驚驚；吉伊卡哇本人；角落小夥伴',face:'小瞳孔、抖抖的嘴；身後有一層紫色的發抖影子，是阿奇的顏色：怕的背後是想知道',sh:'p1',col:'#5FD4EF',
+ {id:'nervous',tw:'15 歲數學焦慮全球第 3；Keltner：焦慮有功能，不是壞事；Pekrun：焦慮直接拉低成績',case:'吉伊卡哇本人、角落小夥伴：膽小的可以當主角，孩子最愛',n:'毛毛',pos:'容易緊張的',end:'情緒調節・低的那端',like:'考試前就毛毛的，怕錯怕考，但怕著也會做',one:'我也好怕⋯⋯',how:'跟你一起怕，然後示範怕著也能做第一步；事前會準備',bad:'常常比你還慌',need:'4 怕的時候、6 有人聽（同病相憐）',ref:'OECD 情緒調節低端（抗壓、情緒控制低）；Inside Out 的憂憂、驚驚；吉伊卡哇本人；角落小夥伴',face:'小瞳孔、抖抖的嘴；身後一層紫色影子，是阿奇的顏色：怕把想問的話壓住了',sh:'p1',col:'#5FD4EF',
   dims:{open:2,task:3,emo:1,coop:3,engage:1},hi:['責任感','同理'],lo:['抗壓','情緒控制']},
  {id:'warm',tw:'只有 46.7% 覺得同學友善；近半數心理困擾找 AI 傾訴；13 歲女生只有一成非常喜歡上學',case:'Baylor 的激勵者：像同學、會示範自己的挫折，讓人更有信心',n:'暖暖',pos:'體貼的',end:'協作・高的那端',like:'先顧你心情、會聽、不評價',one:'我在',how:'先說「我也錯過」、聽、不評價、拍拍你',bad:'什麼都說沒關係，不敢講重話',need:'5 不被比較、6 有人聽、9 別人怎麼看我',ref:'OECD 協作（同理、信任、合作）；角落小夥伴；Baylor 的激勵者',face:'笑眼、笑嘴',sh:'p33',col:'#F6CD4D',
   dims:{open:2,task:2,emo:2,coop:3,engage:2},hi:['同理','信任'],lo:['主動','堅持己見']},
